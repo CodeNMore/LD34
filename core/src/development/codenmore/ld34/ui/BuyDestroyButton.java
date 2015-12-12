@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import development.codenmore.ld34.assets.Assets;
+import development.codenmore.ld34.worlds.tiles.ButtonTile;
 import development.codenmore.ld34.worlds.tiles.Tile;
 
 public class BuyDestroyButton extends BuyButton {
@@ -28,7 +29,8 @@ public class BuyDestroyButton extends BuyButton {
 	
 	@Override
 	public void onPlace(int x, int y, HUD hud){
-		if(hud.getAmountOfResources() < cost)
+		if(hud.getAmountOfResources() < cost
+				|| hud.getWorld().getTile(x, y) instanceof ButtonTile)
 			return;
 		hud.incResources(-cost);
 		

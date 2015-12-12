@@ -9,7 +9,9 @@ import com.badlogic.gdx.math.Vector2;
 
 import development.codenmore.ld34.GameInputListener;
 import development.codenmore.ld34.Main;
+import development.codenmore.ld34.entities.EntityManager;
 import development.codenmore.ld34.states.GameState;
+import development.codenmore.ld34.worlds.tiles.ButtonTile;
 import development.codenmore.ld34.worlds.tiles.Tile;
 
 public class World {
@@ -23,6 +25,7 @@ public class World {
 	private TextureRegion cursor;
 	private Vector2 cursorPos = new Vector2();
 	private Tile[] tiles;
+	private EntityManager entityManager;
 
 	public World(GameState gameState, int width, int height) {
 		this.gameState = gameState;
@@ -31,11 +34,15 @@ public class World {
 		batch = new SpriteBatch();
 		cam = new OrthographicCamera(Main.WIDTH, Main.HEIGHT);
 		cam.setToOrtho(false);
-		translation = new Vector2();
+		translation = new Vector2(width / 2 * Tile.TILESIZE - Main.WIDTH / 2,
+				height / 2 * Tile.TILESIZE - Main.HEIGHT / 2);
 		tiles = new Tile[width * height];
+		entityManager = new EntityManager(this);
 
 		TerrainGenerator.generateTerrain(width, height, tiles, 40, 4, 200, 300,
 				10);
+		setTile(width / 2, height / 2, new ButtonTile());
+		setTile(width / 2 + 1, height / 2 + 1, new ButtonTile());
 	}
 
 	public void tick(float delta) {
@@ -54,14 +61,14 @@ public class World {
 		} else if (GameInputListener.isKeyDown(Keys.D)) {
 			translation.x += cameraSpeed * delta;
 		}
-		
-		if(translation.x < 0)
+
+		if (translation.x < 0)
 			translation.x = 0;
-		if(translation.y < 0)
+		if (translation.y < 0)
 			translation.y = 0;
-		if(translation.x > width * Tile.TILESIZE - Main.WIDTH)
+		if (translation.x > width * Tile.TILESIZE - Main.WIDTH)
 			translation.x = width * Tile.TILESIZE - Main.WIDTH;
-		if(translation.y > height * Tile.TILESIZE - Main.HEIGHT)
+		if (translation.y > height * Tile.TILESIZE - Main.HEIGHT)
 			translation.y = height * Tile.TILESIZE - Main.HEIGHT;
 
 		for (int y = 0; y < height; ++y) {
@@ -69,6 +76,8 @@ public class World {
 				getTile(x, y).tick(delta, this);
 			}
 		}
+
+		entityManager.tick(delta);
 	}
 
 	public void render() {
@@ -87,12 +96,15 @@ public class World {
 							this, batch);
 				}
 			}
-			//CURSOR
-			if(cursor != null){
+			// CURSOR
+			if (cursor != null) {
 				batch.setColor(1.0f, 1.0f, 1.0f, 0.4f);
-				batch.draw(cursor, cursorPos.x, cursorPos.y, Tile.TILESIZE, Tile.TILESIZE);
+				batch.draw(cursor, cursorPos.x, cursorPos.y, Tile.TILESIZE,
+						Tile.TILESIZE);
 				batch.setColor(Color.WHITE);
 			}
+			// Entities
+			entityManager.render(batch);
 		}
 		batch.end();
 	}
@@ -171,6 +183,14 @@ public class World {
 
 	public void setCursorPos(Vector2 cursorPos) {
 		this.cursorPos = cursorPos;
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 
 }

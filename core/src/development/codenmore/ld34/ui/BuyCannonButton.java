@@ -31,12 +31,12 @@ public class BuyCannonButton extends BuyButton {
 
 	@Override
 	public void onPlace(int x, int y, HUD hud) {
-		if (hud.getAmountOfResources() < cost
+		if (hud.getAmountOfEnergy() < cost
 				|| (!(hud.getWorld().getTile(x, y) instanceof DirtTile)
 				&& !(hud.getWorld().getTile(x, y) instanceof GrassTile)
 				&& !(hud.getWorld().getTile(x, y) instanceof StoneTile)))
 			return;
-		hud.incResources(-cost);
+		hud.incEnergy(-cost);
 		
 		hud.getWorld().setTile(x, y, new CannonTile());
 	}

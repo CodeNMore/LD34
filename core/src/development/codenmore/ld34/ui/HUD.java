@@ -19,8 +19,8 @@ public class HUD extends InputAdapter {
 	private static final int POS_Y = 48;
 	private World world;
 	private BuyButton currentSelection = null;
-	private int amountOfResources = 5000;
-	private int amountOfEnergy = 200;
+	private int amountOfResources = 10000;
+	private int amountOfEnergy = 10000;
 	private Rectangle hudBounds;
 	private Array<Button> buttons;
 

@@ -27,14 +27,14 @@ cannon
   index: -1
 cannonball
   rotate: false
-  xy: 320, 8
+  xy: 304, 8
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 color
   rotate: false
-  xy: 328, 7
+  xy: 336, 15
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
@@ -76,7 +76,7 @@ drill.3
   index: -1
 energyIcon
   rotate: false
-  xy: 320, 0
+  xy: 304, 0
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -137,37 +137,65 @@ grassT
   orig: 16, 16
   offset: 0, 0
   index: -1
-player
+resourceIcon
   rotate: false
-  xy: 256, 0
-  size: 16, 16
-  orig: 16, 16
+  xy: 312, 8
+  size: 8, 8
+  orig: 8, 8
   offset: 0, 0
   index: -1
-resourceIcon
+slime.1
+  rotate: false
+  xy: 312, 0
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+slime.2
+  rotate: false
+  xy: 320, 8
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+slime.3
+  rotate: false
+  xy: 320, 0
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+slime.4
   rotate: false
   xy: 328, 8
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
+slime.5
+  rotate: false
+  xy: 328, 0
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
 stoneTile
   rotate: false
-  xy: 272, 0
+  xy: 256, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wallF
   rotate: false
-  xy: 288, 0
+  xy: 272, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wallT
   rotate: false
-  xy: 304, 0
+  xy: 288, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
