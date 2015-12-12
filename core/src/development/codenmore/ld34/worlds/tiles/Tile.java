@@ -17,7 +17,7 @@ public abstract class Tile {
 	
 	// CLASS
 	
-	public static final int TILESIZE = 32;
+	public static final int TILESIZE = 48;
 	private byte id;
 
 	public Tile(int id){

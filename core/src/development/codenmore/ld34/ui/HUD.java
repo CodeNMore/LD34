@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
@@ -23,7 +22,6 @@ public class HUD extends InputAdapter {
 	private int amountOfResources = 5000;
 	private int amountOfEnergy = 200;
 	private Rectangle hudBounds;
-	private TextureRegion cursor = null;
 	private Array<Button> buttons;
 
 	public HUD(World world) {
@@ -44,10 +42,12 @@ public class HUD extends InputAdapter {
 		Vector3 coords = GameInputListener.unprojectCoords(Gdx.input.getX(),
 				Gdx.input.getY());
 		if (hudBounds.contains(coords.x, coords.y) || currentSelection == null) {
-			cursor = null;
+			world.setCursor(null);
 			return;
 		}
-		cursor = currentSelection.getTexture();
+		world.getCursorPos().x = ((int) ((coords.x + world.getTranslation().x) / Tile.TILESIZE) * Tile.TILESIZE);
+		world.getCursorPos().y = ((int) ((coords.y + world.getTranslation().y) / Tile.TILESIZE) * Tile.TILESIZE);
+		world.setCursor(currentSelection.getTexture());
 	}
 
 	public void render(SpriteBatch batch) {
@@ -70,14 +70,6 @@ public class HUD extends InputAdapter {
 
 		for (Button b : buttons)
 			b.render(batch);
-
-		// CURSOR
-		if (cursor == null)
-			return;
-		batch.setColor(1.0f, 1.0f, 1.0f, 0.4f);
-//		batch.draw(cursor, ((Gdx.input.getX() + (world.getTranslation().x % Tile.TILESIZE)) / Tile.TILESIZE) * Tile.TILESIZE, 
-//				((Main.HEIGHT - Gdx.input.getY()) / Tile.TILESIZE) * Tile.TILESIZE, Tile.TILESIZE, Tile.TILESIZE);
-		batch.setColor(Color.WHITE);
 	}
 
 	public boolean checkPlacement(float x, float y, int pointer, int button) {

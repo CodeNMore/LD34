@@ -1,8 +1,10 @@
 package development.codenmore.ld34.worlds;
 
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 import development.codenmore.ld34.GameInputListener;
@@ -18,6 +20,8 @@ public class World {
 	private OrthographicCamera cam;
 	private GameState gameState;
 	private SpriteBatch batch;
+	private TextureRegion cursor;
+	private Vector2 cursorPos = new Vector2();
 	private Tile[] tiles;
 
 	public World(GameState gameState, int width, int height) {
@@ -83,6 +87,12 @@ public class World {
 							this, batch);
 				}
 			}
+			//CURSOR
+			if(cursor != null){
+				batch.setColor(1.0f, 1.0f, 1.0f, 0.4f);
+				batch.draw(cursor, cursorPos.x, cursorPos.y, Tile.TILESIZE, Tile.TILESIZE);
+				batch.setColor(Color.WHITE);
+			}
 		}
 		batch.end();
 	}
@@ -145,6 +155,22 @@ public class World {
 
 	public void setGameState(GameState gameState) {
 		this.gameState = gameState;
+	}
+
+	public TextureRegion getCursor() {
+		return cursor;
+	}
+
+	public void setCursor(TextureRegion cursor) {
+		this.cursor = cursor;
+	}
+
+	public Vector2 getCursorPos() {
+		return cursorPos;
+	}
+
+	public void setCursorPos(Vector2 cursorPos) {
+		this.cursorPos = cursorPos;
 	}
 
 }
