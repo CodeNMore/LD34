@@ -9,6 +9,14 @@ Main Ideas:
 		- 2 Buttons to make workers work
 
 
+- Building of the base (place walls)
+	- Placing machinery
+- Ability to control population / workers
+- Protect the buttons
+
+- Tutorial
+
+
 		
 
 Two Button Controls:

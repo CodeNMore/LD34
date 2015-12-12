@@ -1,5 +1,6 @@
 package development.codenmore.ld34.worlds;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -23,12 +24,12 @@ public class World {
 		cam = new OrthographicCamera(Main.WIDTH, Main.HEIGHT);
 		cam.setToOrtho(false);
 		tiles = new byte[width * height];
-		generateWorld();
+		
+		TerrainGenerator.generateTerrain(width, height, tiles, 40, 4, 200, 300, 10);
 	}
 	
 	public void tick(float delta){
 		cam.update();
-		
 		if(GameInputListener.isKeyDown(Keys.W)){
 			cam.translate(0, cameraSpeed * delta);
 		}else if(GameInputListener.isKeyDown(Keys.S)){
@@ -40,6 +41,10 @@ public class World {
 		}else if(GameInputListener.isKeyDown(Keys.D)){
 			cam.translate(cameraSpeed * delta, 0);
 		}
+		
+		//TODO: THIS IS FOR REGENERATION, DEBUG ONLY
+		if(Gdx.input.isKeyJustPressed(Keys.SPACE))
+			TerrainGenerator.generateTerrain(width, height, tiles, 40, 4, 200, 300, 10);
 	}
 	
 	public void render(){
@@ -69,8 +74,10 @@ public class World {
 		return getTile((int) x, (int) y);
 	}
 	
-	private void generateWorld(){
-		TerrainGenerator.generateTerrain(width, height, tiles, 4, 40, 60);
+	public void setTile(int x, int y, Tile tile){
+		if(x < 0 || y < 0 || x >= width || y >= height)
+			return;
+		tiles[x + y * width] = tile.getId();
 	}
 
 }

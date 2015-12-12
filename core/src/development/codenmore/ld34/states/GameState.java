@@ -11,7 +11,7 @@ public class GameState extends State {
 	private GameInputListener inputListener;
 
 	public GameState(){
-		world = new World(25, 25);
+		world = new World(64, 64);
 		inputListener = new GameInputListener();
 		Gdx.input.setInputProcessor(inputListener);
 	}
