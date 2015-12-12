@@ -1,5 +1,7 @@
 package development.codenmore.ld34.ui;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
 
 
 public abstract class BuyButton extends Button {
@@ -12,6 +14,8 @@ public abstract class BuyButton extends Button {
 	}
 	
 	public abstract void onPlace(int x, int y, HUD hud);
+	
+	public abstract TextureRegion getTexture();
 
 	public int getCost() {
 		return cost;

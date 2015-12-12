@@ -50,6 +50,15 @@ public class World {
 		} else if (GameInputListener.isKeyDown(Keys.D)) {
 			translation.x += cameraSpeed * delta;
 		}
+		
+		if(translation.x < 0)
+			translation.x = 0;
+		if(translation.y < 0)
+			translation.y = 0;
+		if(translation.x > width * Tile.TILESIZE - Main.WIDTH)
+			translation.x = width * Tile.TILESIZE - Main.WIDTH;
+		if(translation.y > height * Tile.TILESIZE - Main.HEIGHT)
+			translation.y = height * Tile.TILESIZE - Main.HEIGHT;
 
 		for (int y = 0; y < height; ++y) {
 			for (int x = 0; x < width; ++x) {

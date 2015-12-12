@@ -41,13 +41,17 @@ public class BuyDrillButton extends BuyButton {
 				&& !(hud.getWorld().getTile(x, y) instanceof StoneTile)))
 			return;
 		hud.incResources(-cost);
-		System.out.println("do");
 		
 		hud.getWorld().setTile(x, y, new DrillTile());
 	}
 
 	@Override
 	public void click() {
+	}
+	
+	@Override
+	public TextureRegion getTexture() {
+		return texture;
 	}
 
 }

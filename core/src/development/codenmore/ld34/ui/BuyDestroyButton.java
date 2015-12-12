@@ -38,5 +38,10 @@ public class BuyDestroyButton extends BuyButton {
 	@Override
 	public void click() {
 	}
+	
+	@Override
+	public TextureRegion getTexture() {
+		return texture;
+	}
 
 }

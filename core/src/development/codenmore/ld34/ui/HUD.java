@@ -1,8 +1,11 @@
 package development.codenmore.ld34.ui;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
@@ -19,21 +22,32 @@ public class HUD extends InputAdapter {
 	private BuyButton currentSelection = null;
 	private int amountOfResources = 5000;
 	private int amountOfEnergy = 200;
+	private Rectangle hudBounds;
+	private TextureRegion cursor = null;
 	private Array<Button> buttons;
 
 	public HUD(World world) {
 		this.world = world;
 		buttons = new Array<Button>();
+		hudBounds = new Rectangle(0, 0, Main.WIDTH, Main.HEIGHT / 4);
 
 		buttons.add(new BuyDestroyButton(16, POS_Y));
 		buttons.add(new BuyWallButton(128, POS_Y));
 		buttons.add(new BuyDrillButton(256 - 16, POS_Y));
+		buttons.add(new BuyGeneratorButton(512 - 156, POS_Y));
+		buttons.add(new BuyCannonButton(512 - 38, POS_Y));
 
 		GameInputListener.addProcessor(this);
 	}
 
 	public void tick(float delta) {
-
+		Vector3 coords = GameInputListener.unprojectCoords(Gdx.input.getX(),
+				Gdx.input.getY());
+		if (hudBounds.contains(coords.x, coords.y) || currentSelection == null) {
+			cursor = null;
+			return;
+		}
+		cursor = currentSelection.getTexture();
 	}
 
 	public void render(SpriteBatch batch) {
@@ -47,16 +61,23 @@ public class HUD extends InputAdapter {
 		Assets.getFont().getData().setScale(0.8f);
 		Assets.getFont().draw(batch, ":" + amountOfResources, 32,
 				Main.HEIGHT - 4);
-		
-		batch.draw(Assets.getRegion("energyIcon"), 2, Main.HEIGHT - 56, 24,
-				24);
+
+		batch.draw(Assets.getRegion("energyIcon"), 2, Main.HEIGHT - 56, 24, 24);
 		Assets.getFont().setColor(Color.BLACK);
 		Assets.getFont().getData().setScale(0.8f);
-		Assets.getFont().draw(batch, ":" + amountOfEnergy, 32,
-				Main.HEIGHT - 36);
+		Assets.getFont()
+				.draw(batch, ":" + amountOfEnergy, 32, Main.HEIGHT - 36);
 
 		for (Button b : buttons)
 			b.render(batch);
+
+		// CURSOR
+		if (cursor == null)
+			return;
+		batch.setColor(1.0f, 1.0f, 1.0f, 0.4f);
+//		batch.draw(cursor, ((Gdx.input.getX() + (world.getTranslation().x % Tile.TILESIZE)) / Tile.TILESIZE) * Tile.TILESIZE, 
+//				((Main.HEIGHT - Gdx.input.getY()) / Tile.TILESIZE) * Tile.TILESIZE, Tile.TILESIZE, Tile.TILESIZE);
+		batch.setColor(Color.WHITE);
 	}
 
 	public boolean checkPlacement(float x, float y, int pointer, int button) {
@@ -85,7 +106,8 @@ public class HUD extends InputAdapter {
 			}
 		}
 
-		checkPlacement(coords.x, coords.y, pointer, button);
+		if (!hudBounds.contains(coords.x, coords.y))
+			checkPlacement(coords.x, coords.y, pointer, button);
 
 		return false;
 	}
@@ -103,7 +125,7 @@ public class HUD extends InputAdapter {
 	public void incResources(int amt) {
 		amountOfResources += amt;
 	}
-	
+
 	public void incEnergy(int amt) {
 		amountOfEnergy += amt;
 	}
