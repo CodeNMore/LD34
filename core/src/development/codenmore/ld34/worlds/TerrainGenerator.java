@@ -2,12 +2,14 @@ package development.codenmore.ld34.worlds;
 
 import com.badlogic.gdx.math.MathUtils;
 
+import development.codenmore.ld34.worlds.tiles.Tile;
+
 
 public class TerrainGenerator {
 
 	private TerrainGenerator(){}
 	
-	public static void generateTerrain(int width, int height, byte[] tiles, int drops, int passes,
+	public static void generateTerrain(int width, int height, Tile[] tiles, int drops, int passes,
 			int min, int max, int offInc){
 		byte[] heightmap = new byte[width * height];
 		int offset = 0;
@@ -21,11 +23,13 @@ public class TerrainGenerator {
 		
 		for(int i = 0;i < tiles.length;++i){
 			if(heightmap[i] > 10){
-				tiles[i] = 2;
+				tiles[i] = Tile.wallTile;
+			}else if(heightmap[i] > 8){
+				tiles[i] = Tile.stoneTile;
 			}else if(heightmap[i] > 3){
-				tiles[i] = 1;
+				tiles[i] = Tile.grassTile;
 			}else{
-				tiles[i] = 0;
+				tiles[i] = Tile.dirtTile;
 			}
 		}
 	}

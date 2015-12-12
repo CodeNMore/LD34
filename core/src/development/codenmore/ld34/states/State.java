@@ -2,6 +2,7 @@ package development.codenmore.ld34.states;
 
 import java.util.Stack;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -46,6 +47,7 @@ public abstract class State {
 		cam = new OrthographicCamera(Main.WIDTH, Main.HEIGHT);
 		cam.setToOrtho(false);
 		viewport = new FitViewport(Main.WIDTH, Main.HEIGHT, cam);
+		viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
 	
 	public abstract void tick(float delta);
