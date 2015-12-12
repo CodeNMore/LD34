@@ -1,0 +1,40 @@
+Ludum Dare #34
+Theme: Two Button Controls AND Growing
+==============
+Main Ideas:
+- Growing civilization / area / base
+	- Economy expansion (mine stuff for wealth)
+	- City management game mixed with RTS combat
+		- Combat would be only 2 buttons
+		- 2 Buttons to make workers work
+
+
+		
+
+Two Button Controls:
+- Protect 2 buttons from being pressed
+	- If both are pressed, it blows you up
+- Someone must hit two buttons to complete a level?
+	- Or hold the buttons down at the same time
+- The controls are in the game
+	- Two buttons make you go somewhere
+- Buttons on a shirt
+- Use the number 2
+- Snake game (grow aswell)
+
+Growing:
+- Leveling system
+- Grow/shrink to fit into places
+- Level is growing, trying to catch it?
+- Try to stop something from growing
+- Growing plants
+- Farm
+- Must make things grow to achieve a goal
+- Trying to grow faster than others (Fight for the Light)
+- Apocalypse, must defend
+
+
+
+
+Stream Music??
+https://www.youtube.com/user/NoCopyrightSounds/videos
