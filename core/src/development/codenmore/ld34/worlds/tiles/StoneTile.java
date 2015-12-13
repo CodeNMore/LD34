@@ -11,7 +11,7 @@ public class StoneTile extends Tile {
 	private static TextureRegion texture;
 
 	public StoneTile(int id) {
-		super(id, 2);
+		super(id, 2, -1);
 		texture = Assets.getRegion("stoneTile");
 	}
 

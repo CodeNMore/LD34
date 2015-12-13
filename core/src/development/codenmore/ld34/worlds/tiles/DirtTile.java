@@ -11,7 +11,7 @@ public class DirtTile extends Tile {
 	private static TextureRegion texture;
 
 	public DirtTile(int id) {
-		super(id, 2);
+		super(id, 2, -1);
 		texture = Assets.getRegion("dirt");
 	}
 

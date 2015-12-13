@@ -20,10 +20,13 @@ public abstract class Tile {
 	public static final int TILESIZE = 48, SOLID_COST = 60;
 	private byte id;
 	private int movementCost;
+	private float health = 0f, startHealth;
 
-	public Tile(int id, int movementCost){
+	public Tile(int id, int movementCost, float health){
 		this.id = (byte) id;
 		this.movementCost = movementCost;
+		this.health = health;
+		this.startHealth = health;
 		tiles[id] = this;
 	}
 	
@@ -45,6 +48,22 @@ public abstract class Tile {
 
 	public void setMovementCost(int movementCost) {
 		this.movementCost = movementCost;
+	}
+
+	public float getHealth() {
+		return health;
+	}
+
+	public float getStartHealth() {
+		return startHealth;
+	}
+
+	public void setStartHealth(float startHealth) {
+		this.startHealth = startHealth;
+	}
+
+	public void setHealth(float health) {
+		this.health = health;
 	}
 	
 }

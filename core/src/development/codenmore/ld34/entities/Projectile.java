@@ -5,8 +5,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 
+import development.codenmore.ld34.assets.Assets;
+
 public class Projectile {
 
+	private static TextureRegion CHECK_FREEZE = Assets.getRegion("freezeball");
 	private TextureRegion texture;
 	private Entity target;
 	private float dmg, speed = 250.0f;
@@ -30,6 +33,10 @@ public class Projectile {
 		if(target.getBounds().overlaps(bounds)){
 			target.damage(dmg);
 			alive = false;
+			if(texture.equals(CHECK_FREEZE)){
+				// Freeze enemy
+				target.freeze(MathUtils.random(1.0f, 1.8f));
+			}
 		}
 	}
 	

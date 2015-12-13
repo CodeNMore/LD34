@@ -16,7 +16,7 @@ public class LazerTile extends FighterTile {
 	private float x, y;
 
 	public LazerTile() {
-		super(START_RADIUS, MathUtils.random(5.5f, 7.5f));
+		super(START_RADIUS, MathUtils.random(5.5f, 7.5f), 2.0f);
 		texture = Assets.getRegion("lazer");
 	}
 
@@ -25,6 +25,7 @@ public class LazerTile extends FighterTile {
 		this.x = x;
 		this.y = y;
 		batch.draw(texture, x, y, Tile.TILESIZE, Tile.TILESIZE);
+		renderBar(batch, x, y + Tile.TILESIZE - 4);
 	}
 
 	@Override

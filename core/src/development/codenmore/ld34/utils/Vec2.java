@@ -3,6 +3,10 @@ package development.codenmore.ld34.utils;
 public class Vec2 {
 
 	public int x, y;
+	
+	public Vec2(){
+		this(0, 0);
+	}
 
 	public Vec2(int x, int y) {
 		set(x, y);

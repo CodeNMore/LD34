@@ -11,7 +11,7 @@ public class WallTile extends Tile {
 	private static TextureRegion wallFront, wallTop;
 	
 	public WallTile(int id) {
-		super(id, Tile.SOLID_COST);
+		super(id, Tile.SOLID_COST, 2.0f);
 		wallFront = Assets.getRegion("wallF");
 		wallTop= Assets.getRegion("wallT");
 	}

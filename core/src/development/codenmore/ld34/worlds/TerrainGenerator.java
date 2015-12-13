@@ -9,7 +9,7 @@ public class TerrainGenerator {
 
 	private TerrainGenerator(){}
 	
-	public static void generateTerrain(int width, int height, Tile[] tiles, int drops, int passes,
+	public static void generateTerrain(int width, int height, World world, int drops, int passes,
 			int min, int max, int offInc){
 		byte[] heightmap = new byte[width * height];
 		int offset = 0;
@@ -21,15 +21,15 @@ public class TerrainGenerator {
 			offset += offInc;
 		}
 		
-		for(int i = 0;i < tiles.length;++i){
+		for(int i = 0;i < world.getTiles().length;++i){
 			if(heightmap[i] > 10){
-				tiles[i] = Tile.wallTile;
+				world.setTile(i, Tile.wallTile);
 			}else if(heightmap[i] > 8){
-				tiles[i] = Tile.stoneTile;
+				world.setTile(i, Tile.stoneTile);
 			}else if(heightmap[i] > 3){
-				tiles[i] = Tile.grassTile;
+				world.setTile(i, Tile.grassTile);
 			}else{
-				tiles[i] = Tile.dirtTile;
+				world.setTile(i, Tile.dirtTile);
 			}
 		}
 	}

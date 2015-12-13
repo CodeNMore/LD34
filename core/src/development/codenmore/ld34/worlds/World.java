@@ -31,7 +31,9 @@ public class World {
 	private Vector2 cursorPos = new Vector2();
 	private Tile[] tiles;
 	private ButtonTile[] buttons;
+	private float[] tileHealth;
 	private EntityManager entityManager;
+	private int currentTileIndex = 0;
 
 	public World(GameState gameState, int width, int height) {
 		this.gameState = gameState;
@@ -43,10 +45,11 @@ public class World {
 		translation = new Vector2(width / 2 * Tile.TILESIZE - Main.WIDTH / 2,
 				height / 2 * Tile.TILESIZE - Main.HEIGHT / 2);
 		tiles = new Tile[width * height];
+		tileHealth = new float[width * height];
 		Node.world = this;
 		entityManager = new EntityManager(this);
 
-		TerrainGenerator.generateTerrain(width, height, tiles, 40, 4, 200, 300,
+		TerrainGenerator.generateTerrain(width, height, this, 40, 4, 200, 300,
 				10);
 		
 		buttons = new ButtonTile[2];
@@ -84,6 +87,7 @@ public class World {
 
 		for (int y = 0; y < height; ++y) {
 			for (int x = 0; x < width; ++x) {
+				currentTileIndex = x + y * width;
 				getTile(x, y).tick(delta, this);
 			}
 		}
@@ -163,7 +167,35 @@ public class World {
 	public void setTile(int x, int y, Tile tile) {
 		if (x < 0 || y < 0 || x >= width || y >= height)
 			return;
-		tiles[x + y * width] = tile;
+		setTile(x + y * width, tile);
+	}
+	
+	public void setTile(int i, Tile tile){
+		tiles[i] = tile;
+		tileHealth[i] = tile.getHealth();
+	}
+	
+	public float getHealth(int x, int y){
+		return getHealth(x + y * width);
+	}
+	
+	public float getHealth(int i){
+		if (i < 0 || i >= tiles.length)
+			return -1f;
+		return tileHealth[i];
+	}
+	
+	public float incHealth(int x, int y, float amt){
+		if (x < 0 || y < 0 || x >= width || y >= height)
+			return -1f;
+		tileHealth[x + y * width] += amt;
+		return getHealth(x, y);
+	}
+	
+	public void reHealTiles(){
+		for(int i = 0;i < tileHealth.length;++i){
+			tileHealth[i] = tiles[i].getStartHealth();
+		}
 	}
 
 	public int getWidth() {
@@ -242,8 +274,24 @@ public class World {
 		return entityManager;
 	}
 
+	public int getCurrentTileIndex() {
+		return currentTileIndex;
+	}
+
+	public void setCurrentTileIndex(int currentTileIndex) {
+		this.currentTileIndex = currentTileIndex;
+	}
+
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
+	}
+
+	public Tile[] getTiles() {
+		return tiles;
+	}
+
+	public void setTiles(Tile[] tiles) {
+		this.tiles = tiles;
 	}
 
 }

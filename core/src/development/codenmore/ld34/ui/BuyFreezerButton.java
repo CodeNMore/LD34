@@ -6,17 +6,17 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import development.codenmore.ld34.assets.Assets;
 import development.codenmore.ld34.worlds.tiles.DirtTile;
+import development.codenmore.ld34.worlds.tiles.FreezerTile;
 import development.codenmore.ld34.worlds.tiles.GrassTile;
-import development.codenmore.ld34.worlds.tiles.LazerTile;
 import development.codenmore.ld34.worlds.tiles.StoneTile;
 
-public class BuyLazerButton extends BuyButton {
+public class BuyFreezerButton extends BuyButton {
 
 	private static TextureRegion texture;
 
-	public BuyLazerButton(float x, float y) {
-		super(x, y, 64, 64, 1000);
-		texture = Assets.getRegion("lazer");
+	public BuyFreezerButton(float x, float y) {
+		super(x, y, 64, 64, 1300);
+		texture = Assets.getRegion("freezer");
 	}
 
 	@Override
@@ -24,8 +24,8 @@ public class BuyLazerButton extends BuyButton {
 		batch.draw(texture, x, y, width, height);
 		Assets.getFont().getData().setScale(0.7f);
 		Assets.getFont().setColor(Color.BLACK);
-		Assets.getFont().draw(batch, "Laser", x + 2, y - 4);
-		Assets.getFont().draw(batch, "" + cost, x - 2, y - 24);
+		Assets.getFont().draw(batch, "Freezer", x - 6, y - 4);
+		Assets.getFont().draw(batch, "" + cost, x, y - 24);
 		batch.draw(Assets.getRegion("energyIcon"), x + 52, y - 38, 16, 16);
 	}
 
@@ -38,7 +38,7 @@ public class BuyLazerButton extends BuyButton {
 			return;
 		hud.incEnergy(-cost);
 		
-		hud.getWorld().setTile(x, y, new LazerTile());
+		hud.getWorld().setTile(x, y, new FreezerTile());
 	}
 
 	@Override

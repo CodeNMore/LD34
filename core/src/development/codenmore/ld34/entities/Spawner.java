@@ -2,6 +2,8 @@ package development.codenmore.ld34.entities;
 
 import com.badlogic.gdx.math.MathUtils;
 
+import development.codenmore.ld34.worlds.tiles.Tile;
+
 public class Spawner {
 
 	private EntityManager manager;
@@ -31,7 +33,7 @@ public class Spawner {
 		
 		if(timer > nextTime){
 			if(eTimer > eTime){
-				manager.addEntity(producer.getNew(manager, x, y));
+				manager.addEntity(producer.getNew(manager, x * Tile.TILESIZE, y * Tile.TILESIZE));
 				eTimer = 0;
 				eSpawned++;
 				if(eSpawned >= toSpawn){
@@ -100,6 +102,14 @@ public class Spawner {
 
 	public float getMaxEnemies() {
 		return maxEnemies;
+	}
+
+	public SpawnProducer getProducer() {
+		return producer;
+	}
+
+	public void setProducer(SpawnProducer producer) {
+		this.producer = producer;
 	}
 
 	public void setMaxEnemies(float maxEnemies) {

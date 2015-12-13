@@ -1,10 +1,12 @@
 package development.codenmore.ld34.entities;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
+import development.codenmore.ld34.ui.Bar;
 import development.codenmore.ld34.utils.Vec2;
 import development.codenmore.ld34.worlds.tiles.ButtonTile;
 import development.codenmore.ld34.worlds.tiles.Tile;
@@ -15,21 +17,51 @@ public abstract class Entity {
 	protected EntityManager manager;
 	protected TextureRegion texture;
 	protected boolean alive = true;
-	protected float health = 5f;
+	protected float startHealth = 5.0f;
+	protected float health = startHealth;
 	protected Array<Vec2> path;
+	private boolean frozen = false;
+	protected float frozenTimer = 0f, freezeTime = 0f;
+	protected float thingDamage = 0.5f, damageTime = 1.0f, damageTimer = damageTime;
+	private boolean damaging = false;
+	private Bar healthBar;
 
-	public Entity(EntityManager manager, TextureRegion texture, float x, float y, float width, float height){
+	public Entity(EntityManager manager, TextureRegion texture, float x, float y, float width, float height, float thingDamage){
 		this.texture = texture;
 		this.manager = manager;
 		bounds = new Rectangle(x, y, width, height);
 		path = new Array<Vec2>();
 		genPath();
+		this.thingDamage = thingDamage;
+		healthBar = new Bar(Color.RED, Color.GREEN, 0, 0, 
+							Tile.TILESIZE - 8, 4, startHealth);
 	}
 	
-	public abstract void tick(float delta);
+	public void tick(float delta){
+		if(frozen){
+			frozenTimer += delta;
+			if(frozenTimer > freezeTime){
+				frozen = false;
+				genPath();
+			}
+		}
+		if(damaging){
+			damageTimer += delta;
+		}
+		checkButtonCollisions();
+		checkHealth();
+		healthBar.setLevel(health);
+	}
 	
 	public void render(SpriteBatch batch){
 		batch.draw(texture, bounds.x, bounds.y, bounds.width, bounds.height);
+		healthBar.render(batch, bounds.x, bounds.y + Tile.TILESIZE - 2);
+	}
+	
+	public void freeze(float time){
+		frozen = true;
+		freezeTime = time;
+		frozenTimer = 0f;
 	}
 	
 	protected void followPath(float speedDelta){
@@ -37,8 +69,22 @@ public abstract class Entity {
 			genPath();
 			return;
 		}
+		if(frozen)
+			return;
 		
 		Vec2 v = path.get(0);
+		if(manager.getWorld().getHealth(v.x, v.y) != -1f){
+			damaging = true;
+			// Must break through tile before entering
+			if(damageTimer >= damageTime){
+				damageTimer = 0f;
+				if(manager.getWorld().incHealth(v.x, v.y, -thingDamage) <= 0){
+					damaging = false;
+					manager.getWorld().setTile(v.x, v.y, Tile.dirtTile);
+				}
+			}
+			return;
+		}
 		float vxs = v.x * Tile.TILESIZE;
 		float vys = v.y * Tile.TILESIZE;
 		
@@ -107,6 +153,38 @@ public abstract class Entity {
 	
 	public void incY(float y){
 		bounds.y += y;
+	}
+
+	public EntityManager getManager() {
+		return manager;
+	}
+
+	public void setManager(EntityManager manager) {
+		this.manager = manager;
+	}
+
+	public float getStartHealth() {
+		return startHealth;
+	}
+
+	public void setStartHealth(float startHealth) {
+		this.startHealth = startHealth;
+	}
+
+	public float getHealth() {
+		return health;
+	}
+
+	public void setHealth(float health) {
+		this.health = health;
+	}
+
+	public float getThingDamage() {
+		return thingDamage;
+	}
+
+	public void setThingDamage(float thingDamage) {
+		this.thingDamage = thingDamage;
 	}
 
 	public Rectangle getBounds() {

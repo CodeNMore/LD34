@@ -13,6 +13,7 @@ import development.codenmore.ld34.Main;
 import development.codenmore.ld34.assets.Assets;
 import development.codenmore.ld34.worlds.World;
 import development.codenmore.ld34.worlds.tiles.CannonTile;
+import development.codenmore.ld34.worlds.tiles.FreezerTile;
 import development.codenmore.ld34.worlds.tiles.LazerTile;
 import development.codenmore.ld34.worlds.tiles.NextPageButton;
 import development.codenmore.ld34.worlds.tiles.PrevPageButton;
@@ -46,6 +47,7 @@ public class HUD extends InputAdapter {
 		buttonsB.add(new PrevPageButton(16, POS_Y - 16, this));
 		buttonsB.add(new BuyLazerButton(80, POS_Y));
 		buttonsB.add(new BuyFarmButton(180, POS_Y));
+		buttonsB.add(new BuyFreezerButton(256 + 16, POS_Y));
 
 		GameInputListener.addProcessor(this);
 	}
@@ -64,6 +66,8 @@ public class HUD extends InputAdapter {
 			world.setCursorRadius(CannonTile.START_RADIUS * Tile.TILESIZE);
 		}else if(currentSelection instanceof BuyLazerButton){
 			world.setCursorRadius(LazerTile.START_RADIUS * Tile.TILESIZE);
+		}else if(currentSelection instanceof BuyFreezerButton){
+			world.setCursorRadius(FreezerTile.START_RADIUS * Tile.TILESIZE);
 		}else{
 			world.setCursorRadius(0f);
 		}

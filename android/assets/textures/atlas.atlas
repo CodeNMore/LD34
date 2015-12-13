@@ -27,14 +27,14 @@ cannon
   index: -1
 cannonball
   rotate: false
-  xy: 192, 8
+  xy: 208, 24
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 color
   rotate: false
-  xy: 224, 17
+  xy: 231, 15
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
@@ -76,7 +76,7 @@ drill.3
   index: -1
 energyIcon
   rotate: false
-  xy: 192, 0
+  xy: 208, 16
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -90,91 +90,105 @@ farmTile
   index: -1
 foodIcon
   rotate: false
-  xy: 208, 24
+  xy: 216, 24
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
-generator.1
+freezeball
+  rotate: false
+  xy: 208, 8
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+freezer
   rotate: false
   xy: 96, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-generator.2
+generator.1
   rotate: false
   xy: 112, 16
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-generator.3
+generator.2
   rotate: false
   xy: 112, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-grass
+generator.3
   rotate: false
   xy: 128, 16
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-grassD
+grass
   rotate: false
   xy: 128, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-grassL
+grassD
   rotate: false
   xy: 144, 16
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-grassR
+grassL
   rotate: false
   xy: 144, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-grassT
+grassR
   rotate: false
   xy: 160, 16
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-lazer
+grassT
   rotate: false
   xy: 160, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
+lazer
+  rotate: false
+  xy: 176, 16
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
 lazerball
   rotate: false
-  xy: 200, 8
+  xy: 208, 0
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 nextArrow
   rotate: false
-  xy: 224, 18
+  xy: 224, 2
   size: 7, 14
   orig: 7, 14
   offset: 0, 0
   index: -1
 prevArrow
   rotate: false
-  xy: 216, 2
+  xy: 232, 10
   size: 7, 14
   orig: 7, 14
   offset: 0, 0
@@ -188,63 +202,63 @@ radius
   index: -1
 resourceIcon
   rotate: false
-  xy: 200, 0
+  xy: 216, 16
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slime.1
   rotate: false
-  xy: 208, 16
+  xy: 224, 24
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slime.2
   rotate: false
-  xy: 216, 24
+  xy: 216, 8
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slime.3
   rotate: false
-  xy: 208, 8
+  xy: 216, 0
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slime.4
   rotate: false
-  xy: 208, 0
+  xy: 224, 16
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slime.5
   rotate: false
-  xy: 216, 16
+  xy: 232, 24
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 stoneTile
   rotate: false
-  xy: 176, 16
+  xy: 176, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wallF
   rotate: false
-  xy: 176, 0
+  xy: 192, 16
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wallT
   rotate: false
-  xy: 192, 16
+  xy: 192, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
