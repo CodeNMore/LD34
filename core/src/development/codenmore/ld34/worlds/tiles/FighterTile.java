@@ -27,4 +27,20 @@ public abstract class FighterTile extends Tile {
 	
 	public abstract boolean onReadyFire(World world);
 
+	public int getRadius() {
+		return radius;
+	}
+
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+
+	public float getWaitTime() {
+		return waitTime;
+	}
+
+	public void setWaitTime(float waitTime) {
+		this.waitTime = waitTime;
+	}
+
 }

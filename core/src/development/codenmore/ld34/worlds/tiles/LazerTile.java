@@ -9,15 +9,15 @@ import development.codenmore.ld34.entities.Entity;
 import development.codenmore.ld34.entities.Projectile;
 import development.codenmore.ld34.worlds.World;
 
-public class CannonTile extends FighterTile {
+public class LazerTile extends FighterTile {
 
 	private TextureRegion texture;
-	public static final int START_RADIUS = 3;
+	public static final int START_RADIUS = 5;
 	private float x, y;
 
-	public CannonTile() {
-		super(START_RADIUS, MathUtils.random(4f, 5.5f));
-		texture = Assets.getRegion("cannon");
+	public LazerTile() {
+		super(START_RADIUS, MathUtils.random(5.5f, 7.5f));
+		texture = Assets.getRegion("lazer");
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class CannonTile extends FighterTile {
 			return false;
 
 		world.getEntityManager().addProjectile(
-				new Projectile(Assets.getRegion("cannonball"), e, x, y,
+				new Projectile(Assets.getRegion("lazerball"), e, x, y,
 						Tile.TILESIZE / 2, Tile.TILESIZE / 2, 1.5f, 280.0f));
 
 		return true;

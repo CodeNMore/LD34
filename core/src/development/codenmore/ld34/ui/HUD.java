@@ -12,6 +12,10 @@ import development.codenmore.ld34.GameInputListener;
 import development.codenmore.ld34.Main;
 import development.codenmore.ld34.assets.Assets;
 import development.codenmore.ld34.worlds.World;
+import development.codenmore.ld34.worlds.tiles.CannonTile;
+import development.codenmore.ld34.worlds.tiles.LazerTile;
+import development.codenmore.ld34.worlds.tiles.NextPageButton;
+import development.codenmore.ld34.worlds.tiles.PrevPageButton;
 import development.codenmore.ld34.worlds.tiles.Tile;
 
 public class HUD extends InputAdapter {
@@ -21,19 +25,27 @@ public class HUD extends InputAdapter {
 	private BuyButton currentSelection = null;
 	private int amountOfResources = 10000;
 	private int amountOfEnergy = 10000;
+	private int amountOfFood = 50;
 	private Rectangle hudBounds;
-	private Array<Button> buttons;
+	private Array<Button> buttonsA, buttonsB;
+	public int page = 1;
 
 	public HUD(World world) {
 		this.world = world;
-		buttons = new Array<Button>();
+		buttonsA = new Array<Button>();
+		buttonsB = new Array<Button>();
 		hudBounds = new Rectangle(0, 0, Main.WIDTH, Main.HEIGHT / 4);
 
-		buttons.add(new BuyDestroyButton(16, POS_Y));
-		buttons.add(new BuyWallButton(128, POS_Y));
-		buttons.add(new BuyDrillButton(256 - 16, POS_Y));
-		buttons.add(new BuyGeneratorButton(512 - 156, POS_Y));
-		buttons.add(new BuyCannonButton(512 - 38, POS_Y));
+		buttonsA.add(new BuyDestroyButton(16, POS_Y));
+		buttonsA.add(new BuyWallButton(128, POS_Y));
+		buttonsA.add(new BuyDrillButton(256 - 16, POS_Y));
+		buttonsA.add(new BuyGeneratorButton(512 - 156, POS_Y));
+		buttonsA.add(new BuyCannonButton(512 - 38, POS_Y));
+		buttonsA.add(new NextPageButton(580, POS_Y - 16, this));
+		
+		buttonsB.add(new PrevPageButton(16, POS_Y - 16, this));
+		buttonsB.add(new BuyLazerButton(80, POS_Y));
+		buttonsB.add(new BuyFarmButton(180, POS_Y));
 
 		GameInputListener.addProcessor(this);
 	}
@@ -48,10 +60,17 @@ public class HUD extends InputAdapter {
 		world.getCursorPos().x = ((int) ((coords.x + world.getTranslation().x) / Tile.TILESIZE) * Tile.TILESIZE);
 		world.getCursorPos().y = ((int) ((coords.y + world.getTranslation().y) / Tile.TILESIZE) * Tile.TILESIZE);
 		world.setCursor(currentSelection.getTexture());
+		if(currentSelection instanceof BuyCannonButton){
+			world.setCursorRadius(CannonTile.START_RADIUS * Tile.TILESIZE);
+		}else if(currentSelection instanceof BuyLazerButton){
+			world.setCursorRadius(LazerTile.START_RADIUS * Tile.TILESIZE);
+		}else{
+			world.setCursorRadius(0f);
+		}
 	}
 
 	public void render(SpriteBatch batch) {
-		batch.setColor(0.4f, 0.4f, 0.4f, 0.7f);
+		batch.setColor(0.4f, 0.4f, 0.4f, 0.85f);
 		batch.draw(Assets.getRegion("color"), 0, 0, Main.WIDTH, Main.HEIGHT / 4);
 		batch.setColor(Color.WHITE);
 
@@ -61,15 +80,19 @@ public class HUD extends InputAdapter {
 		Assets.getFont().getData().setScale(0.8f);
 		Assets.getFont().draw(batch, ":" + amountOfResources, 32,
 				Main.HEIGHT - 4);
-
 		batch.draw(Assets.getRegion("energyIcon"), 2, Main.HEIGHT - 56, 24, 24);
 		Assets.getFont().setColor(Color.BLACK);
-		Assets.getFont().getData().setScale(0.8f);
 		Assets.getFont()
 				.draw(batch, ":" + amountOfEnergy, 32, Main.HEIGHT - 36);
+		batch.draw(Assets.getRegion("foodIcon"), 2, Main.HEIGHT - 86, 24, 24);
+		Assets.getFont().setColor(Color.BLACK);
+		Assets.getFont()
+				.draw(batch, ":" + amountOfFood, 32, Main.HEIGHT - 68);
 
-		for (Button b : buttons)
+		for (Button b : (page == 1) ? buttonsA : buttonsB)
 			b.render(batch);
+		
+		world.getEntityManager().getWaveManager().render(batch);
 	}
 
 	public boolean checkPlacement(float x, float y, int pointer, int button) {
@@ -90,7 +113,7 @@ public class HUD extends InputAdapter {
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		Vector3 coords = GameInputListener.unprojectCoords(screenX, screenY);
-		for (Button b : buttons) {
+		for (Button b : (page == 1) ? buttonsA : buttonsB) {
 			if (b.checkClick(coords.x, coords.y)) {
 				if (b instanceof BuyButton)
 					currentSelection = (BuyButton) b;
@@ -121,6 +144,10 @@ public class HUD extends InputAdapter {
 	public void incEnergy(int amt) {
 		amountOfEnergy += amt;
 	}
+	
+	public void incFood(int amt){
+		amountOfFood += amt;
+	}
 
 	public BuyButton getCurrentSelection() {
 		return currentSelection;
@@ -144,6 +171,14 @@ public class HUD extends InputAdapter {
 
 	public void setAmountOfEnergy(int amountOfEnergy) {
 		this.amountOfEnergy = amountOfEnergy;
+	}
+
+	public int getAmountOfFood() {
+		return amountOfFood;
+	}
+
+	public void setAmountOfFood(int amountOfFood) {
+		this.amountOfFood = amountOfFood;
 	}
 
 }

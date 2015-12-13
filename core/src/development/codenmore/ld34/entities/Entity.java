@@ -6,6 +6,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
 import development.codenmore.ld34.utils.Vec2;
+import development.codenmore.ld34.worlds.tiles.ButtonTile;
+import development.codenmore.ld34.worlds.tiles.Tile;
 
 public abstract class Entity {
 	
@@ -21,12 +23,61 @@ public abstract class Entity {
 		this.manager = manager;
 		bounds = new Rectangle(x, y, width, height);
 		path = new Array<Vec2>();
+		genPath();
 	}
 	
 	public abstract void tick(float delta);
 	
 	public void render(SpriteBatch batch){
 		batch.draw(texture, bounds.x, bounds.y, bounds.width, bounds.height);
+	}
+	
+	protected void followPath(float speedDelta){
+		if(path.size == 0){
+			genPath();
+			return;
+		}
+		
+		Vec2 v = path.get(0);
+		float vxs = v.x * Tile.TILESIZE;
+		float vys = v.y * Tile.TILESIZE;
+		
+		if(bounds.x < vxs){
+			bounds.x += speedDelta;
+			if(bounds.x > vxs)
+				bounds.x = vxs;
+		}else if(bounds.x > vxs){
+			bounds.x -= speedDelta;
+			if(bounds.x < vxs)
+				bounds.x = vxs;
+		}else if(bounds.y < vys){
+			bounds.y += speedDelta;
+			if(bounds.y > vys)
+				bounds.y = vys;
+		}else if(bounds.y > vys){
+			bounds.y -= speedDelta;
+			if(bounds.y < vys)
+				bounds.y = vys;
+		}else{
+			path.removeIndex(0);
+		}
+		
+	}
+	
+	protected void checkButtonCollisions(){
+		for(ButtonTile b : manager.getWorld().getButtons()){
+			if(!b.isPressed() && b.getBounds().overlaps(bounds)){
+				b.setPressed(true);
+				alive = false;
+				return;
+			}
+		}
+	}
+	
+	protected void genPath(){
+		ButtonTile b = manager.getWorld().getAvailableButtonTile();
+		AStar.generatPath((int) (bounds.x / Tile.TILESIZE), (int) (bounds.y / Tile.TILESIZE),
+				(int) (b.getX() / Tile.TILESIZE), (int) (b.getY() / Tile.TILESIZE), path);
 	}
 	
 	protected void checkHealth(){
@@ -38,6 +89,7 @@ public abstract class Entity {
 		health -= amt;
 		checkHealth();
 	}
+	
 	
 	// GETTERS SETTERS
 	

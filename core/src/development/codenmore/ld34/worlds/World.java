@@ -5,10 +5,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
 import development.codenmore.ld34.GameInputListener;
 import development.codenmore.ld34.Main;
+import development.codenmore.ld34.assets.Assets;
 import development.codenmore.ld34.entities.EntityManager;
 import development.codenmore.ld34.entities.Node;
 import development.codenmore.ld34.states.GameState;
@@ -18,14 +20,17 @@ import development.codenmore.ld34.worlds.tiles.Tile;
 public class World {
 
 	private static final float cameraSpeed = 260.0f;
+	private static TextureRegion cursorRadiusTex = Assets.getRegion("radius");
 	private int width, height;
 	private Vector2 translation;
 	private OrthographicCamera cam;
 	private GameState gameState;
 	private SpriteBatch batch;
 	private TextureRegion cursor;
+	private float cursorRadius = 0f;
 	private Vector2 cursorPos = new Vector2();
 	private Tile[] tiles;
+	private ButtonTile[] buttons;
 	private EntityManager entityManager;
 
 	public World(GameState gameState, int width, int height) {
@@ -43,8 +48,12 @@ public class World {
 
 		TerrainGenerator.generateTerrain(width, height, tiles, 40, 4, 200, 300,
 				10);
-		setTile(width / 2, height / 2, new ButtonTile());
-		setTile(width / 2 + 1, height / 2 + 1, new ButtonTile());
+		
+		buttons = new ButtonTile[2];
+		buttons[0] = new ButtonTile();
+		buttons[1] = new ButtonTile();
+		setTile(width / 2 + MathUtils.random(-3, 3), height / 2 + MathUtils.random(1, 3), buttons[0]);
+		setTile(width / 2 + MathUtils.random(-3, 3), height / 2 + MathUtils.random(-3, -1), buttons[1]);
 	}
 
 	public void tick(float delta) {
@@ -80,6 +89,16 @@ public class World {
 		}
 
 		entityManager.tick(delta);
+		
+		boolean not = true;
+		for(ButtonTile b : buttons){
+			if(!b.isPressed())
+				not = false;
+		}
+		if(not){
+			// LOST DUE TO BUTTONS!!!
+			System.out.println("You LOST! LOSER!");
+		}
 	}
 
 	public void render() {
@@ -104,11 +123,27 @@ public class World {
 				batch.draw(cursor, cursorPos.x, cursorPos.y, Tile.TILESIZE,
 						Tile.TILESIZE);
 				batch.setColor(Color.WHITE);
+				if(cursorRadius != 0f){
+					batch.draw(cursorRadiusTex, cursorPos.x + Tile.TILESIZE / 2 - cursorRadius,
+									cursorPos.y + Tile.TILESIZE / 2 - cursorRadius, cursorRadius * 2, cursorRadius * 2);
+				}
 			}
 			// Entities
 			entityManager.render(batch);
 		}
 		batch.end();
+	}
+	
+	public ButtonTile getAvailableButtonTile(){
+		int index = MathUtils.random(0, 1);
+		if(buttons[index].isPressed()){
+			index++;
+			if(index >= buttons.length)
+				index = 0;
+			return buttons[index];
+		}else{
+			return buttons[index];
+		}
 	}
 
 	public void dispose() {
@@ -183,8 +218,24 @@ public class World {
 		return cursorPos;
 	}
 
+	public float getCursorRadius() {
+		return cursorRadius;
+	}
+
+	public void setCursorRadius(float cursorRadius) {
+		this.cursorRadius = cursorRadius;
+	}
+
 	public void setCursorPos(Vector2 cursorPos) {
 		this.cursorPos = cursorPos;
+	}
+
+	public ButtonTile[] getButtons() {
+		return buttons;
+	}
+
+	public void setButtons(ButtonTile[] buttons) {
+		this.buttons = buttons;
 	}
 
 	public EntityManager getEntityManager() {

@@ -33,16 +33,24 @@ public class GrassTile extends Tile {
 	
 	private void calculateEdges(int x, int y, World world){
 		edges.clear();
-		if(world.getTile(x, y + 1) instanceof DirtTile){
+		if(world.getTile(x, y + 1) instanceof DirtTile
+				|| world.getTile(x, y + 1) instanceof CannonTile
+				|| world.getTile(x, y + 1) instanceof DrillTile){
 			edges.add(grassT);
 		}
-		if(world.getTile(x, y - 1) instanceof DirtTile){
+		if(world.getTile(x, y - 1) instanceof DirtTile
+				|| world.getTile(x, y - 1) instanceof CannonTile
+				|| world.getTile(x, y - 1) instanceof DrillTile){
 			edges.add(grassD);
 		}
-		if(world.getTile(x + 1, y) instanceof DirtTile){
+		if(world.getTile(x + 1, y) instanceof DirtTile
+				|| world.getTile(x + 1, y) instanceof CannonTile
+				|| world.getTile(x + 1, y) instanceof DrillTile){
 			edges.add(grassR);
 		}
-		if(world.getTile(x - 1, y) instanceof DirtTile){
+		if(world.getTile(x - 1, y) instanceof DirtTile
+				|| world.getTile(x - 1, y) instanceof CannonTile
+				|| world.getTile(x - 1, y) instanceof DrillTile){
 			edges.add(grassL);
 		}
 	}

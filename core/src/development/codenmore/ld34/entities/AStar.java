@@ -46,7 +46,6 @@ public class AStar {
 			addCheckNode(s.pos.x, s.pos.y + 1, s, open, closed);
 			addCheckNode(s.pos.x, s.pos.y - 1, s, open, closed);
 			
-			System.out.println("Q:" + q);
 			if(q == 9999){
 				System.err.println("THE A STAR LOOP EXITED FORCEFULLY AT 20000");
 			}
@@ -64,6 +63,7 @@ public class AStar {
 		for(int i = open.size - 1;i >= 0;--i){
 			path.add(open.get(i).pos);
 		}
+		path.removeIndex(0);// Remove starting pos
 	}
 	
 	private static void addCheckNode(int x, int y, Node parent, Array<Node> open, Array<Node> closed){

@@ -17,7 +17,7 @@ public abstract class Tile {
 	
 	// CLASS
 	
-	public static final int TILESIZE = 48, SOLID_COST = 10;
+	public static final int TILESIZE = 48, SOLID_COST = 60;
 	private byte id;
 	private int movementCost;
 

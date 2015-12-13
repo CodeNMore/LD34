@@ -1,40 +1,40 @@
 
 atlas.png
-size: 512,16
+size: 256,32
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 buttonTile
   rotate: false
-  xy: 0, 0
+  xy: 32, 16
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 buttonTilePressed
   rotate: false
-  xy: 16, 0
+  xy: 32, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 cannon
   rotate: false
-  xy: 32, 0
+  xy: 48, 16
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 cannonball
   rotate: false
-  xy: 304, 8
+  xy: 192, 8
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 color
   rotate: false
-  xy: 336, 15
+  xy: 224, 17
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
@@ -48,154 +48,203 @@ destroyIcon
   index: -1
 dirt
   rotate: false
-  xy: 64, 0
+  xy: 64, 16
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 drill.1
   rotate: false
-  xy: 80, 0
+  xy: 64, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 drill.2
   rotate: false
-  xy: 96, 0
+  xy: 80, 16
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 drill.3
   rotate: false
-  xy: 112, 0
+  xy: 80, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 energyIcon
   rotate: false
-  xy: 304, 0
+  xy: 192, 0
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+farmTile
+  rotate: false
+  xy: 96, 16
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+foodIcon
+  rotate: false
+  xy: 208, 24
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 generator.1
   rotate: false
-  xy: 128, 0
+  xy: 96, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 generator.2
   rotate: false
-  xy: 144, 0
+  xy: 112, 16
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 generator.3
   rotate: false
-  xy: 160, 0
+  xy: 112, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 grass
   rotate: false
-  xy: 176, 0
+  xy: 128, 16
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 grassD
   rotate: false
-  xy: 192, 0
+  xy: 128, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 grassL
   rotate: false
-  xy: 208, 0
+  xy: 144, 16
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 grassR
   rotate: false
-  xy: 224, 0
+  xy: 144, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 grassT
   rotate: false
-  xy: 240, 0
+  xy: 160, 16
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
+lazer
+  rotate: false
+  xy: 160, 0
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+lazerball
+  rotate: false
+  xy: 200, 8
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+nextArrow
+  rotate: false
+  xy: 224, 18
+  size: 7, 14
+  orig: 7, 14
+  offset: 0, 0
+  index: -1
+prevArrow
+  rotate: false
+  xy: 216, 2
+  size: 7, 14
+  orig: 7, 14
+  offset: 0, 0
+  index: -1
+radius
+  rotate: false
+  xy: 0, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 resourceIcon
   rotate: false
-  xy: 312, 8
+  xy: 200, 0
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slime.1
   rotate: false
-  xy: 312, 0
+  xy: 208, 16
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slime.2
   rotate: false
-  xy: 320, 8
+  xy: 216, 24
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slime.3
   rotate: false
-  xy: 320, 0
+  xy: 208, 8
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slime.4
   rotate: false
-  xy: 328, 8
+  xy: 208, 0
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slime.5
   rotate: false
-  xy: 328, 0
+  xy: 216, 16
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 stoneTile
   rotate: false
-  xy: 256, 0
+  xy: 176, 16
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wallF
   rotate: false
-  xy: 272, 0
+  xy: 176, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wallT
   rotate: false
-  xy: 288, 0
+  xy: 192, 16
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
