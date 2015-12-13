@@ -17,7 +17,7 @@ public class DrillTile extends Tile {
 	private Animation anim;
 
 	public DrillTile() {
-		super(Tile.MAX_UNUSE_ID);
+		super(Tile.MAX_UNUSE_ID, Tile.SOLID_COST);
 		anim = new Animation(0.3f, Assets.getRegion("drill.1"),
 				Assets.getRegion("drill.2"), Assets.getRegion("drill.3"));
 		anim.setPlayMode(PlayMode.LOOP_PINGPONG);

@@ -3,6 +3,9 @@ package development.codenmore.ld34.entities;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
+
+import development.codenmore.ld34.utils.Vec2;
 
 public abstract class Entity {
 	
@@ -11,11 +14,13 @@ public abstract class Entity {
 	protected TextureRegion texture;
 	protected boolean alive = true;
 	protected float health = 5f;
+	protected Array<Vec2> path;
 
 	public Entity(EntityManager manager, TextureRegion texture, float x, float y, float width, float height){
 		this.texture = texture;
 		this.manager = manager;
 		bounds = new Rectangle(x, y, width, height);
+		path = new Array<Vec2>();
 	}
 	
 	public abstract void tick(float delta);

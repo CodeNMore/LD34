@@ -12,7 +12,7 @@ public class ButtonTile extends Tile {
 	private boolean pressed = false;
 
 	public ButtonTile() {
-		super(Tile.MAX_UNUSE_ID);
+		super(Tile.MAX_UNUSE_ID, 1);
 		texture = Assets.getRegion("buttonTile");
 		texturePressed = Assets.getRegion("buttonTilePressed");
 	}

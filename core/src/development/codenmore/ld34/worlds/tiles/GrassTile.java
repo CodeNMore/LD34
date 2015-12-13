@@ -13,7 +13,7 @@ public class GrassTile extends Tile {
 	private static Array<TextureRegion> edges;
 
 	public GrassTile(int id) {
-		super(id);
+		super(id, 2);
 		edges = new Array<TextureRegion>(4);
 		grass = Assets.getRegion("grass");
 		grassL = Assets.getRegion("grassL");

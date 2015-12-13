@@ -10,7 +10,7 @@ public abstract class FighterTile extends Tile {
 	protected float timer;
 	
 	public FighterTile(int radius, float waitTime){
-		super(Tile.MAX_UNUSE_ID);
+		super(Tile.MAX_UNUSE_ID, Tile.SOLID_COST);
 		this.radius = radius;
 		this.waitTime = waitTime;
 		this.timer = waitTime;

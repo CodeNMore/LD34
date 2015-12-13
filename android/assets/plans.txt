@@ -9,6 +9,11 @@ Main Ideas:
 		- 2 Buttons to make workers work
 
 
+
+F = G + H
+Final cost = movement cost + calculated manhattan cost
+
+
 - Building of the base (place walls)
 	- Placing machinery
 - Ability to control population / workers

@@ -17,11 +17,13 @@ public abstract class Tile {
 	
 	// CLASS
 	
-	public static final int TILESIZE = 48;
+	public static final int TILESIZE = 48, SOLID_COST = 10;
 	private byte id;
+	private int movementCost;
 
-	public Tile(int id){
+	public Tile(int id, int movementCost){
 		this.id = (byte) id;
+		this.movementCost = movementCost;
 		tiles[id] = this;
 	}
 	
@@ -35,6 +37,14 @@ public abstract class Tile {
 
 	public void setId(byte id) {
 		this.id = id;
+	}
+
+	public int getMovementCost() {
+		return movementCost;
+	}
+
+	public void setMovementCost(int movementCost) {
+		this.movementCost = movementCost;
 	}
 	
 }

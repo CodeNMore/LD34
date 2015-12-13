@@ -72,4 +72,12 @@ public class EntityManager {
 		projectiles.add(p);
 	}
 
+	public World getWorld() {
+		return world;
+	}
+
+	public void setWorld(World world) {
+		this.world = world;
+	}
+
 }

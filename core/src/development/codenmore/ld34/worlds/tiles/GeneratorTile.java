@@ -17,7 +17,7 @@ public class GeneratorTile extends Tile {
 	private Animation anim;
 
 	public GeneratorTile() {
-		super(Tile.MAX_UNUSE_ID);
+		super(Tile.MAX_UNUSE_ID, Tile.SOLID_COST);
 		anim = new Animation(0.1f, Assets.getRegion("generator.1"),
 				Assets.getRegion("generator.2"), Assets.getRegion("generator.3"));
 		anim.setPlayMode(PlayMode.LOOP_PINGPONG);

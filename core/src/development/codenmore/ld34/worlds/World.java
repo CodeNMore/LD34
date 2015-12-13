@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import development.codenmore.ld34.GameInputListener;
 import development.codenmore.ld34.Main;
 import development.codenmore.ld34.entities.EntityManager;
+import development.codenmore.ld34.entities.Node;
 import development.codenmore.ld34.states.GameState;
 import development.codenmore.ld34.worlds.tiles.ButtonTile;
 import development.codenmore.ld34.worlds.tiles.Tile;
@@ -37,6 +38,7 @@ public class World {
 		translation = new Vector2(width / 2 * Tile.TILESIZE - Main.WIDTH / 2,
 				height / 2 * Tile.TILESIZE - Main.HEIGHT / 2);
 		tiles = new Tile[width * height];
+		Node.world = this;
 		entityManager = new EntityManager(this);
 
 		TerrainGenerator.generateTerrain(width, height, tiles, 40, 4, 200, 300,
