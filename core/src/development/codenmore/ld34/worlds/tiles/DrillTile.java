@@ -12,7 +12,7 @@ import development.codenmore.ld34.worlds.World;
 
 public class DrillTile extends Tile {
 	
-	public static final float TIMEINTERVAL = 5.0f;
+	public static final float TIMEINTERVAL = 20.0f;
 	private static int minRate = 5, maxRate = 10;
 	private float animTimer = 0f;
 	private float timer = 0f;

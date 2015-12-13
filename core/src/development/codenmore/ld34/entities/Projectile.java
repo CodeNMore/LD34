@@ -35,7 +35,7 @@ public class Projectile {
 			alive = false;
 			if(texture.equals(CHECK_FREEZE)){
 				// Freeze enemy
-				target.freeze(MathUtils.random(1.0f, 1.8f));
+				target.freeze(MathUtils.random(2.0f, 3.8f));
 			}
 		}
 	}

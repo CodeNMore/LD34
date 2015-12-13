@@ -14,6 +14,8 @@ import development.codenmore.ld34.assets.Assets;
 import development.codenmore.ld34.entities.EntityManager;
 import development.codenmore.ld34.entities.Node;
 import development.codenmore.ld34.states.GameState;
+import development.codenmore.ld34.states.LoseState;
+import development.codenmore.ld34.states.State;
 import development.codenmore.ld34.worlds.tiles.ButtonTile;
 import development.codenmore.ld34.worlds.tiles.Tile;
 
@@ -60,9 +62,13 @@ public class World {
 	}
 
 	public void tick(float delta) {
+		
 		cam.update();
 		cam.position.x = translation.x + Main.WIDTH / 2;
 		cam.position.y = translation.y + Main.HEIGHT / 2;
+		
+		if(gameState.getTutorial().isOn())
+			return;
 
 		if (GameInputListener.isKeyDown(Keys.W)) {
 			translation.y += cameraSpeed * delta;
@@ -101,7 +107,8 @@ public class World {
 		}
 		if(not){
 			// LOST DUE TO BUTTONS!!!
-			System.out.println("You LOST! LOSER!");
+			State.pop();
+			State.push(new LoseState(entityManager.getWaveManager().getWaveNum(), false));
 		}
 	}
 

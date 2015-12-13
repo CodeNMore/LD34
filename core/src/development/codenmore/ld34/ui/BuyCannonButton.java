@@ -37,6 +37,7 @@ public class BuyCannonButton extends BuyButton {
 				&& !(hud.getWorld().getTile(x, y) instanceof StoneTile)))
 			return;
 		hud.incEnergy(-cost);
+		hud.addFoodTaker();
 		
 		hud.getWorld().setTile(x, y, new CannonTile());
 	}

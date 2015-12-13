@@ -11,7 +11,7 @@ import development.codenmore.ld34.states.State;
 public class Main extends ApplicationAdapter {
 	
 	// Globals
-	public static final String TITLE = "LD34";
+	public static final String TITLE = "Don't Press Them";
 	public static final int WIDTH = 640, HEIGHT = 480;
 	
 	public void create(){

@@ -12,11 +12,11 @@ import development.codenmore.ld34.worlds.World;
 public class LazerTile extends FighterTile {
 
 	private TextureRegion texture;
-	public static final int START_RADIUS = 5;
+	public static final int START_RADIUS = 6;
 	private float x, y;
 
 	public LazerTile() {
-		super(START_RADIUS, MathUtils.random(5.5f, 7.5f), 2.0f);
+		super(START_RADIUS, MathUtils.random(4.0f, 6.5f), 3.0f);
 		texture = Assets.getRegion("lazer");
 	}
 
@@ -37,7 +37,7 @@ public class LazerTile extends FighterTile {
 
 		world.getEntityManager().addProjectile(
 				new Projectile(Assets.getRegion("lazerball"), e, x, y,
-						Tile.TILESIZE / 2, Tile.TILESIZE / 2, 1.5f, 280.0f));
+						Tile.TILESIZE / 2, Tile.TILESIZE / 2, 2.5f, 340.0f));
 
 		return true;
 	}

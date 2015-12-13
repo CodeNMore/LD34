@@ -12,11 +12,11 @@ import development.codenmore.ld34.worlds.World;
 public class CannonTile extends FighterTile {
 
 	private TextureRegion texture;
-	public static final int START_RADIUS = 3;
+	public static final int START_RADIUS = 4;
 	private float x, y;
 
 	public CannonTile() {
-		super(START_RADIUS, MathUtils.random(5f, 6.5f), 2.5f);
+		super(START_RADIUS, MathUtils.random(3f, 4.5f), 2.0f);
 		texture = Assets.getRegion("cannon");
 	}
 
@@ -37,7 +37,7 @@ public class CannonTile extends FighterTile {
 
 		world.getEntityManager().addProjectile(
 				new Projectile(Assets.getRegion("cannonball"), e, x, y,
-						Tile.TILESIZE / 2, Tile.TILESIZE / 2, 1.5f, 280.0f));
+						Tile.TILESIZE / 2, Tile.TILESIZE / 2, 1.5f, 340.0f));
 
 		return true;
 	}

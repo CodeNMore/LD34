@@ -15,7 +15,7 @@ public class BuyWallButton extends BuyButton {
 	private static TextureRegion texture;
 
 	public BuyWallButton(float x, float y) {
-		super(x, y, 64, 64, 50);
+		super(x, y, 64, 64, 25);
 		texture = Assets.getRegion("wallF");
 	}
 

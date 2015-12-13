@@ -15,7 +15,7 @@ public class BuyFreezerButton extends BuyButton {
 	private static TextureRegion texture;
 
 	public BuyFreezerButton(float x, float y) {
-		super(x, y, 64, 64, 1300);
+		super(x, y, 64, 64, 1500);
 		texture = Assets.getRegion("freezer");
 	}
 
@@ -37,7 +37,7 @@ public class BuyFreezerButton extends BuyButton {
 				&& !(hud.getWorld().getTile(x, y) instanceof StoneTile)))
 			return;
 		hud.incEnergy(-cost);
-		
+		hud.addFoodTaker();
 		hud.getWorld().setTile(x, y, new FreezerTile());
 	}
 

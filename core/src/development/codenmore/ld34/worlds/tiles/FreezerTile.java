@@ -12,11 +12,11 @@ import development.codenmore.ld34.worlds.World;
 public class FreezerTile extends FighterTile {
 
 	private TextureRegion texture;
-	public static final int START_RADIUS = 5;
+	public static final int START_RADIUS = 6;
 	private float x, y;
 
 	public FreezerTile() {
-		super(START_RADIUS, MathUtils.random(3f, 4.5f), 2.5f);
+		super(START_RADIUS, MathUtils.random(3.5f, 5.5f), 4.5f);
 		texture = Assets.getRegion("freezer");
 	}
 
@@ -37,7 +37,7 @@ public class FreezerTile extends FighterTile {
 
 		world.getEntityManager().addProjectile(
 				new Projectile(Assets.getRegion("freezeball"), e, x, y,
-						Tile.TILESIZE / 2, Tile.TILESIZE / 2, 0.5f, 280.0f));
+						Tile.TILESIZE / 2, Tile.TILESIZE / 2, 0.5f, 320.0f));
 
 		return true;
 	}

@@ -15,7 +15,7 @@ public class BuyFarmButton extends BuyButton {
 	private static TextureRegion texture;
 
 	public BuyFarmButton(float x, float y) {
-		super(x, y, 64, 64, 1000);
+		super(x, y, 64, 64, 500);
 		texture = Assets.getRegion("farmTile");
 	}
 
@@ -41,7 +41,7 @@ public class BuyFarmButton extends BuyButton {
 				&& !(hud.getWorld().getTile(x, y) instanceof StoneTile)))
 			return;
 		hud.incResources(-cost);
-		
+		hud.removeFoodTaker();
 		hud.getWorld().setTile(x, y, new FarmTile());
 	}
 

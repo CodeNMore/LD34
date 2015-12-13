@@ -6,6 +6,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import development.codenmore.ld34.assets.Assets;
 import development.codenmore.ld34.worlds.tiles.ButtonTile;
+import development.codenmore.ld34.worlds.tiles.DrillTile;
+import development.codenmore.ld34.worlds.tiles.FarmTile;
+import development.codenmore.ld34.worlds.tiles.FighterTile;
+import development.codenmore.ld34.worlds.tiles.GeneratorTile;
 import development.codenmore.ld34.worlds.tiles.Tile;
 
 public class BuyDestroyButton extends BuyButton {
@@ -33,6 +37,12 @@ public class BuyDestroyButton extends BuyButton {
 				|| hud.getWorld().getTile(x, y) instanceof ButtonTile)
 			return;
 		hud.incResources(-cost);
+		Tile t = hud.getWorld().getTile(x, y);
+		if(t instanceof FighterTile
+				|| t instanceof FarmTile
+				|| t instanceof GeneratorTile
+				|| t instanceof DrillTile)
+			hud.removeFoodTaker();
 		
 		hud.getWorld().setTile(x, y, Tile.dirtTile);
 	}

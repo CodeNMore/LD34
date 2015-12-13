@@ -12,8 +12,8 @@ public class WaveManager {
 
 	private EntityManager manager;
 	private int waveNum = 0, spawned = 0, waveEnemyLength = 3;
-	private float waveTimer = 0f, betweenWaveTime = 10.0f;
-	private boolean haltSpawn = true;
+	private float waveTimer = 0f, betweenWaveTime = 25.0f;
+	private boolean haltSpawn = true, rewardGiven = true;
 
 	public WaveManager(EntityManager manager) {
 		this.manager = manager;
@@ -25,6 +25,13 @@ public class WaveManager {
 				s.setTimer(0.0f);
 			}
 			if (manager.getEntities().size <= 0) {
+				if(!rewardGiven){
+					manager.getWorld().getGameState().getHud().incResources(waveNum * 50);
+					manager.getWorld().getGameState().getHud().incEnergy(waveNum * 40);
+					if(MathUtils.randomBoolean(0.1f))
+						manager.getWorld().getGameState().getHud().incFood(MathUtils.random(3, 6));
+					rewardGiven = true;
+				}
 				waveTimer += delta;
 				if (waveTimer > betweenWaveTime) {
 					newWave();
@@ -39,23 +46,40 @@ public class WaveManager {
 		waveTimer = 0.0f;
 		waveNum++;
 		manager.getWorld().reHealTiles();// TODO: Every other wave??
+		rewardGiven = false;
 
-		waveEnemyLength = MathUtils.clamp(waveNum * 5, 5, 100);
-		Slime.HEALTH_MULTIPLIER = MathUtils.clamp(waveNum * 0.75f, 1.0f, 4.5f);
-
-		Vec2 pos = getRandomSpawnerPos();
-		if (waveNum <= 3) {
-			manager.addSpawner(new Spawner(manager, pos.x, pos.y, MathUtils
-					.clamp(MathUtils.random(3, 5) * waveNum, 5.0f, 15.0f),
-					MathUtils.clamp(MathUtils.random(20, 25) * waveNum / 2,
-							15.0f, 30.0f), MathUtils.random(waveNum,
-							waveNum * 3), waveNum * 4, new SpawnProducer() {
-						@Override
-						public Entity getNew(EntityManager manager, float x,
-								float y) {
-							return new Slime(manager, x, y);
-						}
-					}));
+		if (waveNum == 1) {
+			waveEnemyLength = 5;
+			Vec2 pos = getRandomSpawnerPos();
+			manager.addSpawner(new Spawner(manager, pos.x, pos.y, 8, 14, 1, 2,
+				new SpawnProducer() {
+					@Override
+					public Entity getNew(EntityManager manager, float x, float y) {
+						return new Slime(manager, x, y, 1.0f, 1.0f);
+					}
+			}));
+		}else if(waveNum == 2){
+			waveEnemyLength = 12;
+			Vec2 pos = getRandomSpawnerPos();
+			manager.addSpawner(new Spawner(manager, pos.x, pos.y, 5, 10, 3, 6,
+				new SpawnProducer() {
+					@Override
+					public Entity getNew(EntityManager manager, float x, float y) {
+						return new Slime(manager, x, y, 1.5f, 1.0f);
+					}
+			}));
+		}else if(waveNum == 3){
+			waveEnemyLength = 20;
+			Vec2 pos = getRandomSpawnerPos();
+			manager.addSpawner(new Spawner(manager, pos.x, pos.y, 5, 8, 2, 4,
+				new SpawnProducer() {
+					@Override
+					public Entity getNew(EntityManager manager, float x, float y) {
+						return new Tank(manager, x, y, 1.0f, 1.0f);
+					}
+			}));
+		}else if(waveNum == 4){
+			
 		}
 	}
 
@@ -86,6 +110,7 @@ public class WaveManager {
 			r.y = MathUtils.random(manager.getWorld().getHeight() - 10, manager
 					.getWorld().getHeight() - 1);
 		}
+		System.out.println("Random spawn pos: " + r.x + "  " + r.y);
 		return r;
 	}
 

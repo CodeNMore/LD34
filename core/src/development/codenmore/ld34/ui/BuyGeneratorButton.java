@@ -15,7 +15,7 @@ public class BuyGeneratorButton extends BuyButton {
 	private static TextureRegion texture;
 
 	public BuyGeneratorButton(float x, float y) {
-		super(x, y, 64, 64, 600);
+		super(x, y, 64, 64, 400);
 		texture = Assets.getRegion("generator.1");
 	}
 
@@ -41,7 +41,7 @@ public class BuyGeneratorButton extends BuyButton {
 				&& !(hud.getWorld().getTile(x, y) instanceof StoneTile)))
 			return;
 		hud.incResources(-cost);
-		
+		hud.addFoodTaker();
 		hud.getWorld().setTile(x, y, new GeneratorTile());
 	}
 

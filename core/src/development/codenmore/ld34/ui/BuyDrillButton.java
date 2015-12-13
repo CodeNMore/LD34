@@ -15,7 +15,7 @@ public class BuyDrillButton extends BuyButton {
 	private static TextureRegion texture;
 
 	public BuyDrillButton(float x, float y) {
-		super(x, y, 64, 64, 500);
+		super(x, y, 64, 64, 400);
 		texture = Assets.getRegion("drill.1");
 	}
 
@@ -29,7 +29,7 @@ public class BuyDrillButton extends BuyButton {
 		Assets.getFont().setColor(Color.GREEN);
 		Assets.getFont().getData().setScale(0.5f);
 		Assets.getFont().draw(batch, "+  /" + (int) DrillTile.TIMEINTERVAL + "s", x + 2, y + 56);
-		batch.draw(Assets.getRegion("resourceIcon"), x + 44, y - 38, 16, 16);
+		batch.draw(Assets.getRegion("energyIcon"), x + 44, y - 38, 16, 16);
 		batch.draw(Assets.getRegion("resourceIcon"), x + 14, y + 42, 16, 16);
 	}
 
@@ -40,8 +40,8 @@ public class BuyDrillButton extends BuyButton {
 				&& !(hud.getWorld().getTile(x, y) instanceof GrassTile)
 				&& !(hud.getWorld().getTile(x, y) instanceof StoneTile)))
 			return;
-		hud.incResources(-cost);
-		
+		hud.incEnergy(-cost);
+		hud.addFoodTaker();
 		hud.getWorld().setTile(x, y, new DrillTile());
 	}
 

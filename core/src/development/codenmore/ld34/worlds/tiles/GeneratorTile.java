@@ -12,8 +12,8 @@ import development.codenmore.ld34.worlds.World;
 
 public class GeneratorTile extends Tile {
 	
-	public static final float TIMEINTERVAL = 5.0f;
-	private static int minRate = 8, maxRate = 20;
+	public static final float TIMEINTERVAL = 14.0f;
+	private static int minRate = 10, maxRate = 20;
 	private float animTimer = 0f;
 	private float timer = 0f;
 	private Animation anim;

@@ -11,6 +11,8 @@ import com.badlogic.gdx.utils.Array;
 import development.codenmore.ld34.GameInputListener;
 import development.codenmore.ld34.Main;
 import development.codenmore.ld34.assets.Assets;
+import development.codenmore.ld34.states.LoseState;
+import development.codenmore.ld34.states.State;
 import development.codenmore.ld34.worlds.World;
 import development.codenmore.ld34.worlds.tiles.CannonTile;
 import development.codenmore.ld34.worlds.tiles.FreezerTile;
@@ -24,9 +26,11 @@ public class HUD extends InputAdapter {
 	private static final int POS_Y = 48;
 	private World world;
 	private BuyButton currentSelection = null;
-	private int amountOfResources = 10000;
-	private int amountOfEnergy = 10000;
+	private int amountOfResources = 2000;//
+	private int amountOfEnergy = 2000;//
 	private int amountOfFood = 50;
+	private int initialFoodSub = 2, foodTakers = 0;
+	private float foodTimer = 0f, foodTime = 40.0f;
 	private Rectangle hudBounds;
 	private Array<Button> buttonsA, buttonsB;
 	public int page = 1;
@@ -53,8 +57,21 @@ public class HUD extends InputAdapter {
 	}
 
 	public void tick(float delta) {
+		if(world.getGameState().getTutorial().isOn())
+			return;
 		Vector3 coords = GameInputListener.unprojectCoords(Gdx.input.getX(),
 				Gdx.input.getY());
+		
+		foodTimer += delta;
+		if(foodTimer > foodTime){
+			foodTimer = 0f;
+			amountOfFood -= initialFoodSub * foodTakers;
+			if(amountOfFood <= 0){
+				State.pop();
+				State.push(new LoseState(world.getEntityManager().getWaveManager().getWaveNum(), true));
+			}
+		}
+		
 		if (hudBounds.contains(coords.x, coords.y) || currentSelection == null) {
 			world.setCursor(null);
 			return;
@@ -99,6 +116,16 @@ public class HUD extends InputAdapter {
 		world.getEntityManager().getWaveManager().render(batch);
 	}
 
+	public void addFoodTaker(){
+		foodTakers++;
+	}
+	
+	public void removeFoodTaker(){
+		foodTakers--;
+		if(foodTakers < 0)
+			foodTakers = 0;
+	}
+	
 	public boolean checkPlacement(float x, float y, int pointer, int button) {
 		int tileX = (int) (x + world.getTranslation().x) / Tile.TILESIZE;
 		int tileY = (int) (y + world.getTranslation().y) / Tile.TILESIZE;
