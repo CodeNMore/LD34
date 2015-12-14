@@ -28,12 +28,13 @@ public class HUD extends InputAdapter {
 	private BuyButton currentSelection = null;
 	private int amountOfResources = 2000;//
 	private int amountOfEnergy = 2000;//
-	private int amountOfFood = 50;
+	private int amountOfFood = 30;
 	private int initialFoodSub = 3, foodTakers = 0;
 	private float foodTimer = 0f, foodTime = 30.0f;
 	private Rectangle hudBounds;
 	private Array<Button> buttonsA, buttonsB;
 	public int page = 1;
+	private float warnTime = 7.0f, warningTimer = warnTime;
 
 	public HUD(World world) {
 		this.world = world;
@@ -64,9 +65,14 @@ public class HUD extends InputAdapter {
 				Gdx.input.getY());
 		
 		foodTimer += delta;
+		warningTimer += delta;
+		
 		if(foodTimer > foodTime){
 			foodTimer = 0f;
 			amountOfFood -= initialFoodSub * foodTakers;
+			if(amountOfFood <= initialFoodSub * foodTakers + 15){
+				warningTimer = 0f;
+			}
 			if(amountOfFood <= 0){
 				State.pop();
 				State.push(new LoseState(world.getEntityManager().getWaveManager().getWaveNum(), true));
@@ -115,6 +121,12 @@ public class HUD extends InputAdapter {
 			b.render(batch);
 		
 		world.getEntityManager().getWaveManager().render(batch);
+		
+		if(warningTimer < warnTime){
+			Assets.getFont().setColor(Color.ORANGE);
+			Assets.getFont().getData().setScale(0.6f);
+			Assets.getFont().draw(batch, "WATCH YOUR FOOD!", 80, Main.HEIGHT - 70);
+		}
 	}
 
 	public void addFoodTaker(){

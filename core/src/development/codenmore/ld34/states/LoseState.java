@@ -23,6 +23,7 @@ public class LoseState extends State implements InputProcessor {
 		this.fromStarve = fromStarve;
 		bounds = new Rectangle(0, 0, Main.WIDTH, Main.HEIGHT / 6);
 		Gdx.input.setInputProcessor(this);
+		viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
 
 	@Override

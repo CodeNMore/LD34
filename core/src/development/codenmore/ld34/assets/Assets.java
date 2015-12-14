@@ -42,10 +42,10 @@ public class Assets {
 		manager.load(PTH_FONT, BitmapFont.class);
 		manager.load(PTH_ATLAS, TextureAtlas.class);
 		for(int i = 0;i < soundsPath.length;++i){
-			manager.load("audio/" + soundsPath[i] + ".wav", Sound.class);
+			manager.load("audio/" + soundsPath[i] + ".ogg", Sound.class);
 		}
 		for(int i = 0;i < musicsPath.length;++i){
-			manager.load("audio/" + musicsPath[i] + ".wav", Music.class);
+			manager.load("audio/" + musicsPath[i] + ".ogg", Music.class);
 		}
 	}
 	
@@ -53,10 +53,10 @@ public class Assets {
 		atlas = manager.get(PTH_ATLAS, TextureAtlas.class);
 		font = manager.get(PTH_FONT, BitmapFont.class);
 		for(int i = 0;i < soundsPath.length;++i){
-			sounds.put(soundsPath[i], manager.get("audio/" + soundsPath[i] + ".wav", Sound.class));
+			sounds.put(soundsPath[i], manager.get("audio/" + soundsPath[i] + ".ogg", Sound.class));
 		}
 		for(int i = 0;i < musicsPath.length;++i){
-			musics.put(musicsPath[i], manager.get("audio/" + musicsPath[i] + ".wav", Music.class));
+			musics.put(musicsPath[i], manager.get("audio/" + musicsPath[i] + ".ogg", Music.class));
 		}
 	}
 	
@@ -78,6 +78,7 @@ public class Assets {
 			musics.get(musicsPath[i]).stop();
 		if(mute)
 			return;
+		musics.get(name).setLooping(true);
 		musics.get(name).play();
 	}
 	

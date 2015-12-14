@@ -36,6 +36,8 @@ public class BuyWallButton extends BuyButton {
 						&& !(hud.getWorld().getTile(x, y) instanceof GrassTile) && !(hud
 						.getWorld().getTile(x, y) instanceof StoneTile)))
 			return;
+		if(!checkPlacement(x, y, hud.getWorld().getEntityManager()))
+			return;
 		hud.incResources(-cost);
 		Assets.playSound("place");
 		hud.getWorld().setTile(x, y, Tile.wallTile);

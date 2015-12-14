@@ -18,7 +18,7 @@ public abstract class Tile {
 
 	// CLASS
 
-	public static final int TILESIZE = 48, SOLID_COST = 60;
+	public static final int TILESIZE = 44, SOLID_COST = 60;
 	private byte id;
 	private int movementCost;
 	private float health = 0f, startHealth;
@@ -62,6 +62,7 @@ public abstract class Tile {
 
 	public void setStartHealth(float startHealth) {
 		this.startHealth = startHealth;
+		this.health = startHealth;
 	}
 
 	public void setHealth(float health) {

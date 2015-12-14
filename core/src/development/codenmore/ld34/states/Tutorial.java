@@ -45,47 +45,53 @@ public class Tutorial {
 					+ "\nvery, very important?";
 			break;
 		case 1:
+			text = "Move the world around by using"
+					+ "\nthe WASD keys, and select and"
+					+ "\nplace items with the mouse and"
+					+ "\nleft mouse button.";
+			break;
+		case 2:
 			text = "Do you see those 2 red buttons that"
 					+ "\nare on the ground behind me? If"
 					+ "\nthose 2 buttons are both pressed,"
 					+ "\nthen this place will explode!";
 			break;
-		case 2:
+		case 3:
 			text = "Your job is to protect these 2"
 					+ "\nbuttons from the evil enemies of"
 					+ "\nthe world. These enemies are smart,"
 					+ "\nand they wish to destroy us!";
 			break;
-		case 3:
+		case 4:
 			text = "Do you see that green thing in the"
 					+ "\nupper left corner of the screen?"
 					+ "\nThat is how many resources you"
 					+ "\nhave to buy stuff.";
 			break;
-		case 4:
+		case 5:
 			text = "And that yellow thing, that is how"
 					+ "\nmuch energy you have to buy defense"
 					+ "\nitems. That brown thing is how much"
 					+ "\nfood you have for your citizens.";
 			break;
-		case 5:
+		case 6:
 			text = "You must not let your citizens"
 					+ "\nstarve to death, and you must never"
 					+ "\nlet an enemy near those buttons!";
 			break;
-		case 6:
+		case 7:
 			text = "Save resources and energy to buy"
 					+ "\nitems from the menu below, and place"
 					+ "\nthe items on the world to purchase"
 					+ "\nthem.";
 			break;
-		case 7:
+		case 8:
 			text = "Some items attack enemies, while"
 					+ "\nothers produce resources over time."
 					+ "\nYou can use the 'X' item to delete"
 					+ "\nplaced items and stone walls.";
 			break;
-		case 8:
+		case 9:
 			text = "I think I am dying..please, protect"
 					+ "\nthe buttons with your life!"
 					+ "\nI trust you to build and grow your"

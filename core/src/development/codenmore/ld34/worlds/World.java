@@ -58,9 +58,9 @@ public class World {
 		buttons[0] = new ButtonTile();
 		buttons[1] = new ButtonTile();
 		setTile(width / 2 + MathUtils.random(-3, 3),
-				height / 2 + MathUtils.random(1, 3), buttons[0]);
+				height / 2 + MathUtils.random(0, 2), buttons[0]);
 		setTile(width / 2 + MathUtils.random(-3, 3),
-				height / 2 + MathUtils.random(-3, -1), buttons[1]);
+				height / 2 + MathUtils.random(-2, -1), buttons[1]);
 	}
 
 	public void tick(float delta) {

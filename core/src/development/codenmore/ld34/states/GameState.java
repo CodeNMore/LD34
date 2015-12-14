@@ -1,6 +1,5 @@
 package development.codenmore.ld34.states;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 
@@ -9,6 +8,9 @@ import development.codenmore.ld34.Main;
 import development.codenmore.ld34.assets.Assets;
 import development.codenmore.ld34.ui.HUD;
 import development.codenmore.ld34.worlds.World;
+import development.codenmore.ld34.worlds.tiles.DrillTile;
+import development.codenmore.ld34.worlds.tiles.FarmTile;
+import development.codenmore.ld34.worlds.tiles.GeneratorTile;
 
 public class GameState extends State {
 
@@ -25,14 +27,15 @@ public class GameState extends State {
 		tutorial = new Tutorial(inputListener);
 		world = new World(this, 64, 64);
 		hud = new HUD(world);
+		GeneratorTile.TIMEINTERVAL = 7f;
+		DrillTile.TIMEINTERVAL = 7f;
+		FarmTile.TIMEINTERVAL = 16f;
 	}
 
 	@Override
 	public void tick(float delta) {
 		if(GameInputListener.isKeyDown(Keys.F))
-			delta *= 8;//TODO: 4
-		if(Gdx.input.isKeyJustPressed(Keys.M))
-			Assets.toggleMute();
+			delta *= 4;
 			
 		tutorial.tick(delta);
 		world.tick(delta);

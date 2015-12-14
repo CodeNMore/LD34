@@ -9,7 +9,7 @@ public class Spawner {
 	private EntityManager manager;
 	private float x, y;
 	private float timer = 0f, nextTime;
-	private float toSpawn, eTimer, eSpawned, eTime = 0.7f;
+	private float toSpawn, eTimer, eSpawned, eTime = 0.9f;
 	private float minTime, maxTime, minEnemies, maxEnemies;
 	private SpawnProducer producer;
 	

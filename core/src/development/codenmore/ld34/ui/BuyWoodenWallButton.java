@@ -15,7 +15,7 @@ public class BuyWoodenWallButton extends BuyButton {
 	private static TextureRegion texture;
 
 	public BuyWoodenWallButton(float x, float y) {
-		super(x, y, 64, 64, 50);
+		super(x, y, 64, 64, 40);
 		texture = Assets.getRegion("wallFwood");
 	}
 
@@ -36,8 +36,12 @@ public class BuyWoodenWallButton extends BuyButton {
 						&& !(hud.getWorld().getTile(x, y) instanceof GrassTile) && !(hud
 						.getWorld().getTile(x, y) instanceof StoneTile)))
 			return;
+		if(!checkPlacement(x, y, hud.getWorld().getEntityManager()))
+			return;
 		hud.incResources(-cost);
 		Assets.playSound("place");
+		if(hud.getWorld().getEntityManager().getWaveManager().getWaveNum() > 2)
+			Tile.woodWallTile.setStartHealth(0.25f);
 		hud.getWorld().setTile(x, y, Tile.woodWallTile);
 	}
 

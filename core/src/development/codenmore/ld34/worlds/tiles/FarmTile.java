@@ -11,7 +11,7 @@ import development.codenmore.ld34.worlds.World;
 
 public class FarmTile extends Tile {
 	
-	public static final float TIMEINTERVAL = 16.0f;
+	public static float TIMEINTERVAL = 16.0f;
 	private static int minRate = 12, maxRate = 18;
 	private float timer = 0f;
 	private TextureRegion texture;

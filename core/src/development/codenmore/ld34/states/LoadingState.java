@@ -8,7 +8,7 @@ import development.codenmore.ld34.assets.Assets;
 
 public class LoadingState extends State {
 	
-	private static final float MIN_TIME = 0.0f;
+	private static final float MIN_TIME = 2.0f;
 	private Texture bg;
 	private float timer = 0f;
 	
@@ -21,7 +21,7 @@ public class LoadingState extends State {
 		timer += delta;
 		if(Assets.step() && timer >= MIN_TIME){
 			State.pop();
-			State.push(new GameState());
+			State.push(new MainMenuState());
 		}
 	}
 

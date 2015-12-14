@@ -27,14 +27,14 @@ cannon
   index: -1
 cannonball
   rotate: false
-  xy: 960, 440
+  xy: 992, 472
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 color
   rotate: false
-  xy: 648, 147
+  xy: 960, 433
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
@@ -76,7 +76,7 @@ drill.3
   index: -1
 energyIcon
   rotate: false
-  xy: 976, 456
+  xy: 640, 140
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -90,14 +90,14 @@ farmTile
   index: -1
 foodIcon
   rotate: false
-  xy: 992, 472
+  xy: 656, 156
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 freezeball
   rotate: false
-  xy: 640, 140
+  xy: 672, 172
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -181,7 +181,7 @@ lazer
   index: -1
 lazerball
   rotate: false
-  xy: 656, 156
+  xy: 688, 188
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -195,14 +195,14 @@ lostScreen
   index: -1
 nextArrow
   rotate: false
-  xy: 1000, 466
+  xy: 960, 434
   size: 7, 14
   orig: 7, 14
   offset: 0, 0
   index: -1
 prevArrow
   rotate: false
-  xy: 640, 126
+  xy: 976, 450
   size: 7, 14
   orig: 7, 14
   offset: 0, 0
@@ -216,77 +216,77 @@ radius
   index: -1
 resourceIcon
   rotate: false
-  xy: 672, 172
+  xy: 704, 204
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slime.1
   rotate: false
-  xy: 688, 188
+  xy: 80, 8
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slime.2
   rotate: false
-  xy: 704, 204
+  xy: 80, 0
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slime.3
   rotate: false
-  xy: 80, 8
+  xy: 96, 24
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slime.4
   rotate: false
-  xy: 80, 0
+  xy: 967, 440
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slime.5
   rotate: false
-  xy: 96, 24
+  xy: 983, 456
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slimer.1
   rotate: false
-  xy: 960, 432
+  xy: 992, 464
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slimer.2
   rotate: false
-  xy: 968, 440
+  xy: 1000, 472
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slimer.3
   rotate: false
-  xy: 976, 448
+  xy: 640, 132
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slimer.4
   rotate: false
-  xy: 984, 456
+  xy: 648, 140
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 slimer.5
   rotate: false
-  xy: 992, 464
+  xy: 656, 148
   size: 8, 8
   orig: 8, 8
   offset: 0, 0

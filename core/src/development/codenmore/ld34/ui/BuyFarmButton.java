@@ -40,6 +40,8 @@ public class BuyFarmButton extends BuyButton {
 				&& !(hud.getWorld().getTile(x, y) instanceof GrassTile)
 				&& !(hud.getWorld().getTile(x, y) instanceof StoneTile)))
 			return;
+		if(!checkPlacement(x, y, hud.getWorld().getEntityManager()))
+			return;
 		hud.incResources(-cost);
 		hud.removeFoodTaker();
 		Assets.playSound("place");

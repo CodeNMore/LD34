@@ -16,7 +16,7 @@ public class FreezerTile extends FighterTile {
 	private float x, y;
 
 	public FreezerTile() {
-		super(START_RADIUS, MathUtils.random(3.5f, 5.5f), 4.5f);
+		super(START_RADIUS, MathUtils.random(3.0f, 4.5f), 4.5f);
 		texture = Assets.getRegion("freezer");
 	}
 

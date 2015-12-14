@@ -16,7 +16,7 @@ public class CannonTile extends FighterTile {
 	private float x, y;
 
 	public CannonTile() {
-		super(START_RADIUS, MathUtils.random(3f, 4.5f), 2.0f);
+		super(START_RADIUS, MathUtils.random(2f, 3.2f), 2.0f);
 		texture = Assets.getRegion("cannon");
 	}
 
