@@ -38,6 +38,8 @@ public class BuyLazerButton extends BuyButton {
 			return;
 		hud.incEnergy(-cost);
 		hud.addFoodTaker();
+		hud.addFoodTaker();
+		Assets.playSound("place");
 		hud.getWorld().setTile(x, y, new LazerTile());
 	}
 

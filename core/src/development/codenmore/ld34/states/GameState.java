@@ -1,6 +1,12 @@
 package development.codenmore.ld34.states;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
+
 import development.codenmore.ld34.GameInputListener;
+import development.codenmore.ld34.Main;
+import development.codenmore.ld34.assets.Assets;
 import development.codenmore.ld34.ui.HUD;
 import development.codenmore.ld34.worlds.World;
 
@@ -23,6 +29,11 @@ public class GameState extends State {
 
 	@Override
 	public void tick(float delta) {
+		if(GameInputListener.isKeyDown(Keys.F))
+			delta *= 8;//TODO: 4
+		if(Gdx.input.isKeyJustPressed(Keys.M))
+			Assets.toggleMute();
+			
 		tutorial.tick(delta);
 		world.tick(delta);
 		hud.tick(delta);
@@ -37,6 +48,9 @@ public class GameState extends State {
 		{
 			hud.render(batch);
 			tutorial.render(batch);
+			Assets.getFont().getData().setScale(0.6f);
+			Assets.getFont().setColor(Color.BLACK);
+			Assets.getFont().draw(batch, "Hold 'F' to\nFast Forward!", Main.WIDTH - 140, Main.HEIGHT - 8);
 		}
 		batch.end();
 	}
@@ -45,6 +59,12 @@ public class GameState extends State {
 	public void onPop() {
 		super.onPop();
 		world.dispose();
+	}
+	
+	@Override
+	public void onPush(){
+		super.onPush();
+		Assets.playMusic("game1");
 	}
 
 	// GETTERS SETTERS

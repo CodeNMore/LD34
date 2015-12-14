@@ -27,8 +27,8 @@ public class BuyDestroyButton extends BuyButton {
 		Assets.getFont().getData().setScale(0.7f);
 		Assets.getFont().setColor(Color.BLACK);
 		Assets.getFont().draw(batch, "Destroy", x - 8, y - 4);
-		Assets.getFont().draw(batch, "" + cost, x + 20, y - 24);
-		batch.draw(Assets.getRegion("resourceIcon"), x + 36, y - 38, 16, 16);
+//		Assets.getFont().draw(batch, "" + cost, x + 20, y - 24);
+//		batch.draw(Assets.getRegion("resourceIcon"), x + 36, y - 38, 16, 16);
 	}
 	
 	@Override
@@ -44,6 +44,7 @@ public class BuyDestroyButton extends BuyButton {
 				|| t instanceof DrillTile)
 			hud.removeFoodTaker();
 		
+		Assets.playSound("wallHit");
 		hud.getWorld().setTile(x, y, Tile.dirtTile);
 	}
 

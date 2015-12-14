@@ -35,13 +35,14 @@ public class BuyDrillButton extends BuyButton {
 
 	@Override
 	public void onPlace(int x, int y, HUD hud) {
-		if (hud.getAmountOfResources() < cost
+		if (hud.getAmountOfEnergy() < cost
 				|| (!(hud.getWorld().getTile(x, y) instanceof DirtTile)
 				&& !(hud.getWorld().getTile(x, y) instanceof GrassTile)
 				&& !(hud.getWorld().getTile(x, y) instanceof StoneTile)))
 			return;
 		hud.incEnergy(-cost);
 		hud.addFoodTaker();
+		Assets.playSound("place");
 		hud.getWorld().setTile(x, y, new DrillTile());
 	}
 

@@ -12,7 +12,7 @@ import development.codenmore.ld34.worlds.World;
 public class LazerTile extends FighterTile {
 
 	private TextureRegion texture;
-	public static final int START_RADIUS = 6;
+	public static final int START_RADIUS = 5;
 	private float x, y;
 
 	public LazerTile() {

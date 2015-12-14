@@ -25,11 +25,11 @@ public class BuyFarmButton extends BuyButton {
 		Assets.getFont().getData().setScale(0.7f);
 		Assets.getFont().setColor(Color.BLACK);
 		Assets.getFont().draw(batch, "Farm", x + 8, y - 4);
-		Assets.getFont().draw(batch, "" + cost, x, y - 24);
+		Assets.getFont().draw(batch, "" + cost, x + 4, y - 24);
 		Assets.getFont().setColor(Color.WHITE);
 		Assets.getFont().getData().setScale(0.5f);
 		Assets.getFont().draw(batch, "+  /" + (int) FarmTile.TIMEINTERVAL + "s", x + 2, y + 56);
-		batch.draw(Assets.getRegion("energyIcon"), x + 52, y - 38, 16, 16);
+		batch.draw(Assets.getRegion("resourceIcon"), x + 46, y - 38, 16, 16);
 		batch.draw(Assets.getRegion("foodIcon"), x + 14, y + 42, 16, 16);
 	}
 
@@ -42,6 +42,7 @@ public class BuyFarmButton extends BuyButton {
 			return;
 		hud.incResources(-cost);
 		hud.removeFoodTaker();
+		Assets.playSound("place");
 		hud.getWorld().setTile(x, y, new FarmTile());
 	}
 

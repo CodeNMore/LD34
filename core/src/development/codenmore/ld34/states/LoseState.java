@@ -19,7 +19,7 @@ public class LoseState extends State implements InputProcessor {
 	private float timer = 0f, wait = 0.8f;
 	
 	public LoseState(int wave, boolean fromStarve){
-		this.wave = wave;
+		this.wave = wave - 1;
 		this.fromStarve = fromStarve;
 		bounds = new Rectangle(0, 0, Main.WIDTH, Main.HEIGHT / 6);
 		Gdx.input.setInputProcessor(this);
@@ -49,6 +49,12 @@ public class LoseState extends State implements InputProcessor {
 			}
 		}
 		batch.end();
+	}
+	
+	@Override
+	public void onPush(){
+		super.onPush();
+		Assets.playMusic("menus");
 	}
 	
 	@Override

@@ -40,6 +40,7 @@ public class ButtonTile extends Tile {
 
 	public void setPressed(boolean pressed) {
 		this.pressed = pressed;
+		Assets.playSound("buttonPress");
 	}
 
 	public float getX() {

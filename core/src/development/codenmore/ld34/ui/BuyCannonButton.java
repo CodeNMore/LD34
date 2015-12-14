@@ -38,7 +38,7 @@ public class BuyCannonButton extends BuyButton {
 			return;
 		hud.incEnergy(-cost);
 		hud.addFoodTaker();
-		
+		Assets.playSound("place");
 		hud.getWorld().setTile(x, y, new CannonTile());
 	}
 

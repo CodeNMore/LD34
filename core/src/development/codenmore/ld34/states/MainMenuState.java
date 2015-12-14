@@ -47,6 +47,12 @@ public class MainMenuState extends State implements InputProcessor {
 		}
 		return false;
 	}
+	
+	@Override
+	public void onPush(){
+		super.onPush();
+		Assets.playMusic("menus");
+	}
 
 	@Override
 	public boolean keyDown(int keycode) {

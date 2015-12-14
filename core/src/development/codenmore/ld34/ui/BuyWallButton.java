@@ -15,7 +15,7 @@ public class BuyWallButton extends BuyButton {
 	private static TextureRegion texture;
 
 	public BuyWallButton(float x, float y) {
-		super(x, y, 64, 64, 25);
+		super(x, y, 64, 64, 125);
 		texture = Assets.getRegion("wallF");
 	}
 
@@ -25,8 +25,8 @@ public class BuyWallButton extends BuyButton {
 		Assets.getFont().getData().setScale(0.7f);
 		Assets.getFont().setColor(Color.BLACK);
 		Assets.getFont().draw(batch, "Wall", x + 8, y - 4);
-		Assets.getFont().draw(batch, "" + cost, x + 16, y - 24);
-		batch.draw(Assets.getRegion("resourceIcon"), x + 42, y - 38, 16, 16);
+		Assets.getFont().draw(batch, "" + cost, x + 8, y - 24);
+		batch.draw(Assets.getRegion("resourceIcon"), x + 48, y - 38, 16, 16);
 	}
 
 	@Override
@@ -36,8 +36,8 @@ public class BuyWallButton extends BuyButton {
 						&& !(hud.getWorld().getTile(x, y) instanceof GrassTile) && !(hud
 						.getWorld().getTile(x, y) instanceof StoneTile)))
 			return;
-
 		hud.incResources(-cost);
+		Assets.playSound("place");
 		hud.getWorld().setTile(x, y, Tile.wallTile);
 	}
 

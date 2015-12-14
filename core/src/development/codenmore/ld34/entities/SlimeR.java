@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 
 import development.codenmore.ld34.assets.Assets;
+import development.codenmore.ld34.worlds.tiles.Tile;
 
 
 public class SlimeR extends Entity {
@@ -15,6 +16,8 @@ public class SlimeR extends Entity {
 	public SlimeR(EntityManager manager, float x, float y, float healthMultiplier, float speedMultiplier) {
 		super(manager, Assets.getRegion("slimer.1"), x, y, 32, 32, 0.5f);
 		setStartHealth(4.5f * healthMultiplier);
+		healthBar.setMaxLevel(startHealth);
+		healthBar.getBounds().width = Tile.TILESIZE - 8;
 		damageTime = 1.25f;
 		this.speedMultiplier = speedMultiplier;
 		setHealth(getStartHealth());

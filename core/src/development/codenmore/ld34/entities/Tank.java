@@ -15,6 +15,7 @@ public class Tank extends Entity {
 		this.speedMultiplier = speedMultiplier;
 		setStartHealth(7.0f * healthMultiplier);
 		setHealth(getStartHealth());
+		healthBar.setMaxLevel(startHealth);
 	}
 
 	@Override

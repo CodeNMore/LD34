@@ -11,14 +11,15 @@ public class WallTile extends Tile {
 	private static TextureRegion wallFront, wallTop;
 	
 	public WallTile(int id) {
-		super(id, Tile.SOLID_COST, 2.0f);
+		super(id, Tile.SOLID_COST, 1.25f);
 		wallFront = Assets.getRegion("wallF");
 		wallTop= Assets.getRegion("wallT");
 	}
 
 	@Override
 	public void render(float x, float y, World world, SpriteBatch batch) {
-		if(world.getTile(x / Tile.TILESIZE, y / Tile.TILESIZE - 1) instanceof WallTile){
+		if(world.getTile(x / Tile.TILESIZE, y / Tile.TILESIZE - 1) instanceof WallTile
+				|| world.getTile(x / Tile.TILESIZE, y / Tile.TILESIZE - 1) instanceof WoodWallTile){
 			batch.draw(wallTop, x, y, Tile.TILESIZE, Tile.TILESIZE);
 		}else{
 			batch.draw(wallFront, x, y, Tile.TILESIZE, Tile.TILESIZE);

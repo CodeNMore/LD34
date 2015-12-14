@@ -18,6 +18,7 @@ public abstract class State {
 	
 	public static void push(State state){
 		states.push(state);
+		state.onPush();
 	}
 	
 	public static State peek(){
@@ -27,13 +28,14 @@ public abstract class State {
 	}
 	
 	public static void pop(){
-		if(!states.isEmpty())
-			states.pop();
+		if(!states.isEmpty()){
+			states.pop().onPop();
+		}
 	}
 	
 	public static void popAll(){
 		while(!states.isEmpty())
-			states.pop();
+			pop();
 	}
 	
 	// Class

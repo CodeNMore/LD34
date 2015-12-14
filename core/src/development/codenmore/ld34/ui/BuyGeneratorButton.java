@@ -42,6 +42,7 @@ public class BuyGeneratorButton extends BuyButton {
 			return;
 		hud.incResources(-cost);
 		hud.addFoodTaker();
+		Assets.playSound("place");
 		hud.getWorld().setTile(x, y, new GeneratorTile());
 	}
 

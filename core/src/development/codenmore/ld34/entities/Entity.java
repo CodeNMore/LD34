@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
+import development.codenmore.ld34.assets.Assets;
 import development.codenmore.ld34.ui.Bar;
 import development.codenmore.ld34.utils.Vec2;
 import development.codenmore.ld34.worlds.tiles.ButtonTile;
@@ -27,7 +28,7 @@ public abstract class Entity {
 	protected float thingDamage = 0.5f, damageTime = 1.0f,
 			damageTimer = damageTime;
 	private boolean damaging = false;
-	private Bar healthBar;
+	protected Bar healthBar;
 
 	public Entity(EntityManager manager, TextureRegion texture, float x,
 			float y, float width, float height, float thingDamage) {
@@ -84,6 +85,7 @@ public abstract class Entity {
 				damageTimer = 0f;
 				if (manager.getWorld().incHealth(v.x, v.y, -thingDamage) <= 0) {
 					damaging = false;
+					Assets.playSound("wallHit");
 					manager.getWorld().setTile(v.x, v.y, Tile.dirtTile);
 				}
 			}

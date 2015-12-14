@@ -31,6 +31,7 @@ public class WaveManager {
 					if(MathUtils.randomBoolean(0.1f))
 						manager.getWorld().getGameState().getHud().incFood(MathUtils.random(3, 6));
 					rewardGiven = true;
+					Assets.playSound("award");
 				}
 				waveTimer += delta;
 				if (waveTimer > betweenWaveTime) {
@@ -59,27 +60,47 @@ public class WaveManager {
 					}
 			}));
 		}else if(waveNum == 2){
-			waveEnemyLength = 12;
+			waveEnemyLength = 8;
 			Vec2 pos = getRandomSpawnerPos();
-			manager.addSpawner(new Spawner(manager, pos.x, pos.y, 5, 10, 3, 6,
+			manager.addSpawner(new Spawner(manager, pos.x, pos.y, 12, 20, 2, 3,
 				new SpawnProducer() {
 					@Override
 					public Entity getNew(EntityManager manager, float x, float y) {
-						return new Slime(manager, x, y, 1.5f, 1.0f);
+						return new Slime(manager, x, y, 1.0f, 1.0f);
 					}
 			}));
 		}else if(waveNum == 3){
-			waveEnemyLength = 20;
+			waveEnemyLength = 13;
 			Vec2 pos = getRandomSpawnerPos();
-			manager.addSpawner(new Spawner(manager, pos.x, pos.y, 5, 8, 2, 4,
+			manager.addSpawner(new Spawner(manager, pos.x, pos.y, 22, 24, 2, 3,
+				new SpawnProducer() {
+					@Override
+					public Entity getNew(EntityManager manager, float x, float y) {
+						return new SlimeR(manager, x, y, 1.0f, 1.0f);
+					}
+			}));
+		}else if(waveNum == 4){
+			waveEnemyLength = 16;
+			Vec2 pos = getRandomSpawnerPos();
+			manager.addSpawner(new Spawner(manager, pos.x, pos.y, 22, 30, 1, 1,
 				new SpawnProducer() {
 					@Override
 					public Entity getNew(EntityManager manager, float x, float y) {
 						return new Tank(manager, x, y, 1.0f, 1.0f);
 					}
 			}));
-		}else if(waveNum == 4){
-			
+		}else if(waveNum == 5){
+			waveEnemyLength = 23;
+		}else if(waveNum == 6){
+			waveEnemyLength = 28;
+			Vec2 pos = getRandomSpawnerPos();
+			manager.addSpawner(new Spawner(manager, pos.x, pos.y, 22, 24, 2, 3,
+				new SpawnProducer() {
+					@Override
+					public Entity getNew(EntityManager manager, float x, float y) {
+						return new SlimeR(manager, x, y, 1.2f, 1.2f);
+					}
+			}));
 		}
 	}
 

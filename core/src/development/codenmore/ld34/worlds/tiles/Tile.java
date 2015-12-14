@@ -5,33 +5,35 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import development.codenmore.ld34.worlds.World;
 
 public abstract class Tile {
-	
+
 	// Manager
-	
-	public static Tile[] tiles = new Tile[5];
+
+	public static Tile[] tiles = new Tile[6];
 	public static Tile dirtTile = new DirtTile(0);
 	public static Tile grassTile = new GrassTile(1);
 	public static Tile wallTile = new WallTile(2);
 	public static Tile stoneTile = new StoneTile(3);
+	public static Tile woodWallTile = new WoodWallTile(4);
 	public static final int MAX_UNUSE_ID = tiles.length - 1;
-	
+
 	// CLASS
-	
+
 	public static final int TILESIZE = 48, SOLID_COST = 60;
 	private byte id;
 	private int movementCost;
 	private float health = 0f, startHealth;
 
-	public Tile(int id, int movementCost, float health){
+	public Tile(int id, int movementCost, float health) {
 		this.id = (byte) id;
 		this.movementCost = movementCost;
 		this.health = health;
 		this.startHealth = health;
 		tiles[id] = this;
 	}
-	
-	public void tick(float delta, World world){}
-	
+
+	public void tick(float delta, World world) {
+	}
+
 	public abstract void render(float x, float y, World world, SpriteBatch batch);
 
 	public byte getId() {
@@ -65,5 +67,5 @@ public abstract class Tile {
 	public void setHealth(float health) {
 		this.health = health;
 	}
-	
+
 }

@@ -53,33 +53,37 @@ public class World {
 
 		TerrainGenerator.generateTerrain(width, height, this, 40, 4, 200, 300,
 				10);
-		
+
 		buttons = new ButtonTile[2];
 		buttons[0] = new ButtonTile();
 		buttons[1] = new ButtonTile();
-		setTile(width / 2 + MathUtils.random(-3, 3), height / 2 + MathUtils.random(1, 3), buttons[0]);
-		setTile(width / 2 + MathUtils.random(-3, 3), height / 2 + MathUtils.random(-3, -1), buttons[1]);
+		setTile(width / 2 + MathUtils.random(-3, 3),
+				height / 2 + MathUtils.random(1, 3), buttons[0]);
+		setTile(width / 2 + MathUtils.random(-3, 3),
+				height / 2 + MathUtils.random(-3, -1), buttons[1]);
 	}
 
 	public void tick(float delta) {
-		
+
 		cam.update();
 		cam.position.x = translation.x + Main.WIDTH / 2;
 		cam.position.y = translation.y + Main.HEIGHT / 2;
-		
-		if(gameState.getTutorial().isOn())
+
+		if (gameState.getTutorial().isOn())
 			return;
 
-		if (GameInputListener.isKeyDown(Keys.W)) {
-			translation.y += cameraSpeed * delta;
-		} else if (GameInputListener.isKeyDown(Keys.S)) {
-			translation.y -= cameraSpeed * delta;
-		}
+		if (!GameInputListener.isKeyDown(Keys.F)) {
+			if (GameInputListener.isKeyDown(Keys.W)) {
+				translation.y += cameraSpeed * delta;
+			} else if (GameInputListener.isKeyDown(Keys.S)) {
+				translation.y -= cameraSpeed * delta;
+			}
 
-		if (GameInputListener.isKeyDown(Keys.A)) {
-			translation.x -= cameraSpeed * delta;
-		} else if (GameInputListener.isKeyDown(Keys.D)) {
-			translation.x += cameraSpeed * delta;
+			if (GameInputListener.isKeyDown(Keys.A)) {
+				translation.x -= cameraSpeed * delta;
+			} else if (GameInputListener.isKeyDown(Keys.D)) {
+				translation.x += cameraSpeed * delta;
+			}
 		}
 
 		if (translation.x < 0)
@@ -99,16 +103,17 @@ public class World {
 		}
 
 		entityManager.tick(delta);
-		
+
 		boolean not = true;
-		for(ButtonTile b : buttons){
-			if(!b.isPressed())
+		for (ButtonTile b : buttons) {
+			if (!b.isPressed())
 				not = false;
 		}
-		if(not){
+		if (not) {
 			// LOST DUE TO BUTTONS!!!
 			State.pop();
-			State.push(new LoseState(entityManager.getWaveManager().getWaveNum(), false));
+			State.push(new LoseState(entityManager.getWaveManager()
+					.getWaveNum(), false));
 		}
 	}
 
@@ -134,9 +139,10 @@ public class World {
 				batch.draw(cursor, cursorPos.x, cursorPos.y, Tile.TILESIZE,
 						Tile.TILESIZE);
 				batch.setColor(Color.WHITE);
-				if(cursorRadius != 0f){
-					batch.draw(cursorRadiusTex, cursorPos.x + Tile.TILESIZE / 2 - cursorRadius,
-									cursorPos.y + Tile.TILESIZE / 2 - cursorRadius, cursorRadius * 2, cursorRadius * 2);
+				if (cursorRadius != 0f) {
+					batch.draw(cursorRadiusTex, cursorPos.x + Tile.TILESIZE / 2
+							- cursorRadius, cursorPos.y + Tile.TILESIZE / 2
+							- cursorRadius, cursorRadius * 2, cursorRadius * 2);
 				}
 			}
 			// Entities
@@ -144,15 +150,15 @@ public class World {
 		}
 		batch.end();
 	}
-	
-	public ButtonTile getAvailableButtonTile(){
+
+	public ButtonTile getAvailableButtonTile() {
 		int index = MathUtils.random(0, 1);
-		if(buttons[index].isPressed()){
+		if (buttons[index].isPressed()) {
 			index++;
-			if(index >= buttons.length)
+			if (index >= buttons.length)
 				index = 0;
 			return buttons[index];
-		}else{
+		} else {
 			return buttons[index];
 		}
 	}
@@ -176,31 +182,31 @@ public class World {
 			return;
 		setTile(x + y * width, tile);
 	}
-	
-	public void setTile(int i, Tile tile){
+
+	public void setTile(int i, Tile tile) {
 		tiles[i] = tile;
 		tileHealth[i] = tile.getHealth();
 	}
-	
-	public float getHealth(int x, int y){
+
+	public float getHealth(int x, int y) {
 		return getHealth(x + y * width);
 	}
-	
-	public float getHealth(int i){
+
+	public float getHealth(int i) {
 		if (i < 0 || i >= tiles.length)
 			return -1f;
 		return tileHealth[i];
 	}
-	
-	public float incHealth(int x, int y, float amt){
+
+	public float incHealth(int x, int y, float amt) {
 		if (x < 0 || y < 0 || x >= width || y >= height)
 			return -1f;
 		tileHealth[x + y * width] += amt;
 		return getHealth(x, y);
 	}
-	
-	public void reHealTiles(){
-		for(int i = 0;i < tileHealth.length;++i){
+
+	public void reHealTiles() {
+		for (int i = 0; i < tileHealth.length; ++i) {
 			tileHealth[i] = tiles[i].getStartHealth();
 		}
 	}

@@ -67,5 +67,13 @@ public class Bar {
 	public void setMaxLevel(float maxLevel) {
 		this.maxLevel = maxLevel;
 	}
+
+	public Rectangle getBounds() {
+		return bounds;
+	}
+
+	public void setBounds(Rectangle bounds) {
+		this.bounds = bounds;
+	}
 	
 }

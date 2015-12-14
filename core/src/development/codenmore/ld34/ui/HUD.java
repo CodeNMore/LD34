@@ -29,8 +29,8 @@ public class HUD extends InputAdapter {
 	private int amountOfResources = 2000;//
 	private int amountOfEnergy = 2000;//
 	private int amountOfFood = 50;
-	private int initialFoodSub = 2, foodTakers = 0;
-	private float foodTimer = 0f, foodTime = 40.0f;
+	private int initialFoodSub = 3, foodTakers = 0;
+	private float foodTimer = 0f, foodTime = 30.0f;
 	private Rectangle hudBounds;
 	private Array<Button> buttonsA, buttonsB;
 	public int page = 1;
@@ -42,16 +42,17 @@ public class HUD extends InputAdapter {
 		hudBounds = new Rectangle(0, 0, Main.WIDTH, Main.HEIGHT / 4);
 
 		buttonsA.add(new BuyDestroyButton(16, POS_Y));
-		buttonsA.add(new BuyWallButton(128, POS_Y));
-		buttonsA.add(new BuyDrillButton(256 - 16, POS_Y));
-		buttonsA.add(new BuyGeneratorButton(512 - 156, POS_Y));
+		buttonsA.add(new BuyWoodenWallButton(128, POS_Y));
+		buttonsA.add(new BuyWallButton(256 - 16, POS_Y));
+		buttonsA.add(new BuyDrillButton(256 + 100, POS_Y));
 		buttonsA.add(new BuyCannonButton(512 - 38, POS_Y));
 		buttonsA.add(new NextPageButton(580, POS_Y - 16, this));
 		
 		buttonsB.add(new PrevPageButton(16, POS_Y - 16, this));
-		buttonsB.add(new BuyLazerButton(80, POS_Y));
-		buttonsB.add(new BuyFarmButton(180, POS_Y));
-		buttonsB.add(new BuyFreezerButton(256 + 16, POS_Y));
+		buttonsB.add(new BuyGeneratorButton(80, POS_Y));
+		buttonsB.add(new BuyLazerButton(256 + 28, POS_Y));
+		buttonsB.add(new BuyFarmButton(156+26, POS_Y));
+		buttonsB.add(new BuyFreezerButton(256 + 134, POS_Y));
 
 		GameInputListener.addProcessor(this);
 	}
